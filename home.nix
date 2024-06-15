@@ -271,17 +271,17 @@
   # programs.zsh.antidote.enable = true;
   programs.zsh.enableCompletion = false;
   # programs.zsh.antidote.plugins = [
-    # "zsh-users/zsh-autosuggestions"
-    # "marlonrichert/zsh-autocomplete"
+  # "zsh-users/zsh-autosuggestions"
+  # "marlonrichert/zsh-autocomplete"
   #   "desyncr/auto-ls"
   #   "jeffreytse/zsh-vi-mode"
   #   "romkatv/powerlevel10k"
   #   "zsh-users/zsh-syntax-highlighting"
   #   "zsh-users/zsh-history-substring-search"
   # ];
-  
-  
-    programs.zsh.plugins = [
+
+
+  programs.zsh.plugins = [
     {
       name = "zsh-autosuggestions";
       src = pkgs.fetchFromGitHub {
@@ -300,14 +300,69 @@
         sha256 = "bzOTeYWrzuYNbeat30zijKJ9kflRhdE/0wD2HwZWXbU=";
       };
     }
-    ];
+    {
+      name = "auto-ls";
+      src = pkgs.fetchFromGitHub {
+        owner = "desyncr";
+        repo = "auto-ls";
+        rev = "a7a7e6c16407a3c4a46319f5f111a827468a0943";
+        sha256 = "HMfC4s7KW4bO7H6RYzLnSARoFr1Ez89Z2VGONKMpGbw=";
+      };
+    }
+    {
+      name = "zsh-vi-mode";
+      src = pkgs.fetchFromGitHub {
+        owner = "jeffreytse";
+        repo = "zsh-vi-mode";
+        rev = "287efa19ec492b2f24bb93d1f4eaac3049743a63";
+        sha256 = "HMfC4s7KW4bO7H6RYzLnSARoFr1Ez89Z2VGONKMpGbw=";
+      };
+    }
+    {
+      name = "powerlevel10k";
+      src = pkgs.fetchFromGitHub {
+        owner = "romkatv";
+        repo = "powerlevel10k";
+        rev = "bde5ca4c2aa6e0c52dd7f15cf216dffdb1ec788c";
+        sha256 = "IA2pPW8WT/9/jz/+5zDwedkYz+rzyCy0DRnIvDh9zac=";
+      };
+    }
+    {
+      name = "catppuccin-zsh-syntax-highlighting";
+      file = "themes/catppuccin_mocha-zsh-syntax-highlighting.zsh";
+      src = pkgs.fetchFromGitHub {
+        owner = "catppuccin";
+        repo = "zsh-syntax-highlighting";
+        rev = "06d519c20798f0ebe275fc3a8101841faaeee8ea";
+        sha256 = "Q7KmwUd9fblprL55W0Sf4g7lRcemnhjh4/v+TacJSfo=";
+      };
+    }
+    {
+      name = "zsh-syntax-highlighting";
+      src = pkgs.fetchFromGitHub {
+        owner = "zsh-users";
+        repo = "zsh-syntax-highlighting";
+        rev = "e0165eaa730dd0fa321a6a6de74f092fe87630b0";
+        sha256 = "4rW2N+ankAH4sA6Sa5mr9IKsdAg7WTgrmyqJ2V1vygQ=";
+      };
+    }
+    {
+      name = "zsh-history-substring-search";
+      src = pkgs.fetchFromGitHub {
+        owner = "zsh-users";
+        repo = "zsh-history-substring-search";
+        rev = "87ce96b1862928d84b1afe7c173316614b30e301";
+        sha256 = "1+w0AeVJtu1EK5iNVwk3loenFuIyVlQmlw8TWliHZGI=";
+      };
+    }
+  ];
 
   programs.zsh.initExtra = ''
-    #[[ ! -f /home/dylan/.p10k.zsh ]] || source /home/dylan/.p10k.zsh
+    [[ ! -f /home/dylan/.p10k.zsh ]] || source /home/dylan/.p10k.zsh
     
     bindkey "key[Up]" up-line-or-search
   '';
-  
+
   programs.fzf.enable = true;
   programs.fzf.enableZshIntegration = true;
 
