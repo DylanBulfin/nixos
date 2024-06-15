@@ -306,7 +306,7 @@
         owner = "desyncr";
         repo = "auto-ls";
         rev = "a7a7e6c16407a3c4a46319f5f111a827468a0943";
-        sha256 = "HMfC4s7KW4bO7H6RYzLnSARoFr1Ez89Z2VGONKMpGbw=";
+        sha256 = "nLAdHI1y6lL95QKnNN8x5remKobLClnVY5Ia3TZXp5Y=";
       };
     }
     {
@@ -320,6 +320,7 @@
     }
     {
       name = "powerlevel10k";
+      file = "powerlevel10k.zsh-theme";
       src = pkgs.fetchFromGitHub {
         owner = "romkatv";
         repo = "powerlevel10k";
