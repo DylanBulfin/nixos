@@ -10,12 +10,6 @@
       ./hardware-configuration.nix
     ];
     
-  boot.kernelParams = [
-    "nowatchdog"
-    "nvme_load=YES"
-    "rw"
-  ];
-  
   boot.kernelPackages = pkgs.linuxPackages_latest; 
 
   security.polkit.enable = true;
@@ -38,6 +32,12 @@
 
   # Set your time zone.
   time.timeZone = "America/New_York";
+  
+  programs.zsh.enable = true;
+  programs.zsh.enableCompletion = false;
+  # programs.zsh.promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+  # users.defaultUserShell = pkgs.zsh;
+  environment.pathsToLink = [ "/share/zsh" ];
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -53,7 +53,7 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
-
+  
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -122,21 +122,23 @@
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
     nil
+    nixpkgs-fmt
     vim
     helix
-    foot
     alacritty
     wl-clipboard
     git
     armcord
     dconf2nix
+    # zsh-powerlevel10k
     
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
         vscode-extensions.asvetliakov.vscode-neovim
         vscode-extensions.github.copilot
         vscode-extensions.github.copilot-chat
-        bbenoist.nix
+        # bbenoist.nix
+        vscode-extensions.jnoortheen.nix-ide
       ];
     })
   ];

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ...}:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -14,9 +14,11 @@
     mako
     sway-contrib.grimshot
     wofi
+    antidote
+    swaybg
   ];
 
-  programs.neovim = {  
+  programs.neovim = {
     enable = true;
     extraConfig = ''
       lua << EOF
@@ -109,9 +111,9 @@
       EOF
     '';
   };
- /*  
-  wayland.windowManager.hyprland.enable = true;
-  wayland.windowManager.hyprland.settings = {
+  /*  
+    wayland.windowManager.hyprland.enable = true;
+    wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
     bind =
       [
@@ -134,9 +136,9 @@
           )
           10)
       );
-  };  
- */
- 
+    };  
+   */
+
   programs.waybar.enable = true;
 
   programs.waybar.style = ./style.css;
@@ -145,80 +147,82 @@
       layer = "top";
       position = "top";
       height = 30;
-      modules-left= ["sway/workspaces" "sway/mode"];
-      modules-center= ["sway/window"];
-      modules-right= ["pulseaudio" "network" "cpu" "memory" "temperature" "backlight" "battery" "clock"];
-    "clock"= {
+      modules-left = [ "sway/workspaces" "sway/mode" ];
+      modules-center = [ "sway/window" ];
+      modules-right = [ "pulseaudio" "network" "cpu" "memory" "temperature" "backlight" "battery" "clock" ];
+      "clock" = {
         # "timezone"= "America/New_York",
-        "tooltip-format"= "<big>{=%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-        "format-alt"= "{=%Y-%m-%d}";
-    };
-    "cpu"= {
-        "format"= "{usage}% ";
-        "tooltip"= false;
-    };
-    "memory"= {
-        "format"= "{}% ";
-    };
-    "temperature"= {
+        "tooltip-format" = "<big>{=%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+        "format-alt" = "{=%Y-%m-%d}";
+      };
+      "cpu" = {
+        "format" = "{usage}% ";
+        "tooltip" = false;
+      };
+      "memory" = {
+        "format" = "{}% ";
+      };
+      "temperature" = {
         # "thermal-zone"= 2;
         # "hwmon-path"= "/sys/class/hwmon/hwmon2/temp1_input";
-        "critical-threshold"= 80;
+        "critical-threshold" = 80;
         # "format-critical"= "{temperatureC}°C {icon}";
-        "format"= "{temperatureC}°C {icon}";
-        "format-icons"= ["" "" ""];
-    };
-    "backlight"= {
+        "format" = "{temperatureC}°C {icon}";
+        "format-icons" = [ "" "" "" ];
+      };
+      "backlight" = {
         # "device"= "acpi_video1";
-        "format"= "{percent}% {icon}";
-        "format-icons"= ["" "" "" "" "" "" "" "" ""];
-    };
-    "battery"= {
-        "states"= {
-            # "good"= 95;
-            "warning"= 30;
-            "critical"= 15;
+        "format" = "{percent}% {icon}";
+        "format-icons" = [ "" "" "" "" "" "" "" "" "" ];
+      };
+      "battery" = {
+        "states" = {
+          # "good"= 95;
+          "warning" = 30;
+          "critical" = 15;
         };
-        "format"= "{capacity}% {icon}";
-        "format-charging"= "{capacity}% ";
-        "format-plugged"= "{capacity}% ";
-        "format-alt"= "{time} {icon}";
+        "format" = "{capacity}% {icon}";
+        "format-charging" = "{capacity}% ";
+        "format-plugged" = "{capacity}% ";
+        "format-alt" = "{time} {icon}";
         # "format-good"= "", // An empty format will hide the module
         # "format-full"= "";
-        "format-icons"= ["" "" "" "" ""];
-    };
-    "network"= {
+        "format-icons" = [ "" "" "" "" "" ];
+      };
+      "network" = {
         # "interface"= "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi"= "{essid} ({signalStrength}%) ";
-        "format-ethernet"= "{ipaddr}/{cidr} ";
-        "tooltip-format"= "{ifname} via {gwaddr} ";
-        "format-linked"= "{ifname} (No IP) ";
-        "format-disconnected"= "Disconnected ⚠";
-        "format-alt"= "{ifname}= {ipaddr}/{cidr}";
-    };
-    "pulseaudio"= {
+        "format-wifi" = "{essid} ({signalStrength}%) ";
+        "format-ethernet" = "{ipaddr}/{cidr} ";
+        "tooltip-format" = "{ifname} via {gwaddr} ";
+        "format-linked" = "{ifname} (No IP) ";
+        "format-disconnected" = "Disconnected ⚠";
+        "format-alt" = "{ifname}= {ipaddr}/{cidr}";
+      };
+      "pulseaudio" = {
         # "scroll-step"= 1, // %, can be a float
-        "format"= "{volume}% {icon}   {format_source}";
-        "format-bluetooth"= "{volume}% {icon} {format_source}";
-        "format-bluetooth-muted"= " {icon} {format_source}";
-        "format-muted"= " {format_source}";
-        "format-source"= "{volume}% ";
-        "format-source-muted"= "";
-        "format-icons"= {
-            "headphone"= "";
-            "hands-free"= "";
-            "headset"= "";
-            "phone"= "";
-            "portable"= "";
-            "car"= "";
-            "default"= ["" "" ""];
+        "format" = "{volume}% {icon}   {format_source}";
+        "format-bluetooth" = "{volume}% {icon} {format_source}";
+        "format-bluetooth-muted" = " {icon} {format_source}";
+        "format-muted" = " {format_source}";
+        "format-source" = "{volume}% ";
+        "format-source-muted" = "";
+        "format-icons" = {
+          "headphone" = "";
+          "hands-free" = "";
+          "headset" = "";
+          "phone" = "";
+          "portable" = "";
+          "car" = "";
+          "default" = [ "" "" "" ];
         };
-        "on-click"= "pavucontrol";
-    };
+        "on-click" = "pavucontrol";
+      };
     };
 
   };
- 
+
+  home.file."wallpaper.png".source = ./wallpaper.png;
+
   wayland.windowManager.sway = {
     enable = true;
     config = rec {
@@ -228,15 +232,16 @@
       left = "m";
       right = "i";
       # Use kitty as default terminal
-      terminal = "foot"; 
+      terminal = "foot";
       startup = [
-        {command = "swaybg -i Downloads/nixos-wallpaper-catppuccin-mocha.png -m fill";}
+        { command = "swaybg -i /home/dylan/wallpaper.png -m fill"; }
       ];
       bars = [{ command = "${pkgs.waybar}/bin/waybar"; }];
-      keybindings = 
+      keybindings =
         let
           modifier = config.wayland.windowManager.sway.config.modifier;
-        in lib.mkOptionDefault {
+        in
+        lib.mkOptionDefault {
           # need to do it this way bc up option doesn't work since mod+e defined already
           "${modifier}+e" = lib.mkForce "focus up";
           "${modifier}+Return" = "exec ${pkgs.foot}/bin/foot";
@@ -244,9 +249,9 @@
           "${modifier}+o" = "exec ${pkgs.firefox}/bin/firefox";
           "${modifier}+t" = "exec ${pkgs.armcord}/bin/armcord";
           "${modifier}+Shift+s" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot copy area";
-          "${modifier}+q" = "kill"; 
+          "${modifier}+q" = "kill";
         };
-        
+
       menu = "${pkgs.wofi}/bin/wofi --show drun";
       window.hideEdgeBorders = "both";
       window.titlebar = false;
@@ -260,23 +265,75 @@
       };
     };
   };
+
+  home.file.".p10k.zsh".source = ./.p10k.zsh;
+  programs.zsh.enable = true;
+  # programs.zsh.antidote.enable = true;
+  programs.zsh.enableCompletion = false;
+  # programs.zsh.antidote.plugins = [
+    # "zsh-users/zsh-autosuggestions"
+    # "marlonrichert/zsh-autocomplete"
+  #   "desyncr/auto-ls"
+  #   "jeffreytse/zsh-vi-mode"
+  #   "romkatv/powerlevel10k"
+  #   "zsh-users/zsh-syntax-highlighting"
+  #   "zsh-users/zsh-history-substring-search"
+  # ];
   
+  
+    programs.zsh.plugins = [
+    {
+      name = "zsh-autosuggestions";
+      src = pkgs.fetchFromGitHub {
+        owner = "zsh-users";
+        repo = "zsh-autosuggestions";
+        rev = "c3d4e576c9c86eac62884bd47c01f6faed043fc5";
+        sha256 = "B+Kz3B7d97CM/3ztpQyVkE6EfMipVF8Y4HJNfSRXHtU=";
+      };
+    }
+    {
+      name = "zsh-autocomplete";
+      src = pkgs.fetchFromGitHub {
+        owner = "marlonrichert";
+        repo = "zsh-autocomplete";
+        rev = "196810035992abea65e54852c4278af2069ee482";
+        sha256 = "bzOTeYWrzuYNbeat30zijKJ9kflRhdE/0wD2HwZWXbU=";
+      };
+    }
+    ];
+
+  programs.zsh.initExtra = ''
+    #[[ ! -f /home/dylan/.p10k.zsh ]] || source /home/dylan/.p10k.zsh
+    
+    bindkey "key[Up]" up-line-or-search
+  '';
+  
+  programs.fzf.enable = true;
+  programs.fzf.enableZshIntegration = true;
+
+  programs.foot.enable = true;
+  programs.foot.settings = {
+    main = {
+      font = "Noto Sans Mono:size=11";
+    };
+  };
+
   programs.wofi.enable = true;
   programs.wofi.settings = {
     columns = 2;
   };
-  programs.wofi.style = 
-  ''
-    * {
-      font-family: monospace;
-  }
+  programs.wofi.style =
+    ''
+        * {
+          font-family: monospace;
+      }
   
-  window {
-      background-color: #7c818c;
-  }
-  ''
+      window {
+          background-color: #7c818c;
+      }
+    ''
   ;
-  
+
   home.stateVersion = "23.11";
 
   programs.home-manager.enable = true;
