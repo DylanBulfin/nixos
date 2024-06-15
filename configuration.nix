@@ -15,6 +15,10 @@
     "nvme_load=YES"
     "rw"
   ];
+  
+  boot.kernelPackages = pkgs.linuxPackages_latest; 
+
+  security.polkit.enable = true;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
@@ -106,7 +110,8 @@
 
   # Install firefox.
   programs.firefox.enable = true;
-  programs.hyprland.enable = true;
+  programs.nm-applet.enable = true;
+
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -125,15 +130,27 @@
     git
     armcord
     dconf2nix
-
     
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
         vscode-extensions.asvetliakov.vscode-neovim
+        vscode-extensions.github.copilot
+        vscode-extensions.github.copilot-chat
         bbenoist.nix
       ];
     })
   ];
+  
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    meslo-lgs-nf
+
+    monaspace
+  ];
+  
+  programs.sway.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
