@@ -18,6 +18,20 @@
     wofi
     antidote
     swaybg
+
+
+    lua-language-server
+    nixd
+    # nil
+
+
+    # lspconfig a depedency of neodev, can't install directly
+    # vimPlugins.nvim-lspconfig
+    # vimPlugins.neodev-nvim
+    # vimPlugins.catppuccin-nvim
+
+    # vimPlugins.nvim-treesitter-textsubjects
+    # vimPlugins.nvim-treesitter-textobjects
   ];
 
   programs.foot.enable = true;

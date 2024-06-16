@@ -127,7 +127,6 @@
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
-    nil
     nixpkgs-fmt
     vim
     helix
@@ -147,6 +146,7 @@
         vscode-extensions.github.copilot-chat
         # bbenoist.nix
         vscode-extensions.jnoortheen.nix-ide
+        vscode-extensions.sumneko.lua 
       ];
     })
   ];

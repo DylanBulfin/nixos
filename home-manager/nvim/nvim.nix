@@ -1,8 +1,9 @@
-{ ... }:
+{ lib, pkgs, ... }:
 {
   programs.neovim = {
     enable = true;
-    extraLuaConfig = ''
+    /*
+      extraLuaConfig = ''
       function colemak()
         vim.keymap.set({ "n", "v" }, "m", "h", { desc = "Left" })
         vim.keymap.set({ "n", "v", "o" }, "n", "j", { desc = "Down" })
@@ -89,6 +90,21 @@
 
       vim.keymap.set("n", "ze", call("editor.unfold"))
       vim.keymap.set("v", "ze", call("editor.unfold"))   
-    '';
+      '';
+    */
+
+    extraLuaConfig = lib.fileContents ./config.lua;
+    plugins = with pkgs.vimPlugins; [
+      nvim-lspconfig
+      neodev-nvim
+      catppuccin-nvim
+
+      nvim-treesitter
+      nvim-treesitter-textsubjects
+      nvim-treesitter-textobjects
+      nvim-treesitter-parsers.lua
+      
+      mini-nvim
+    ];
   };
 }
