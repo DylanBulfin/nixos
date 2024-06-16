@@ -200,11 +200,11 @@
       };
       "pulseaudio" = {
         # "scroll-step"= 1, // %, can be a float
-        "format" = "{volume}% {icon}   {format_source}";
-        "format-bluetooth" = "{volume}% {icon} {format_source}";
-        "format-bluetooth-muted" = " {icon} {format_source}";
-        "format-muted" = " {format_source}";
-        "format-source" = "{volume}% ";
+        "format" = "{volume}% {icon}    {format_source}";
+        "format-bluetooth" = "{volume}% {icon}     {format_source}";
+        "format-bluetooth-muted" = " {icon}     {format_source}";
+        "format-muted" = "     {format_source}";
+        "format-source" = "{volume}%     ";
         "format-source-muted" = "";
         "format-icons" = {
           "headphone" = "";
@@ -235,6 +235,7 @@
       terminal = "foot";
       startup = [
         { command = "swaybg -i /home/dylan/wallpaper.png -m fill"; }
+        { command = "swaymsg workspace 1"; }
       ];
       bars = [{ command = "${pkgs.waybar}/bin/waybar"; }];
       keybindings =
@@ -246,15 +247,46 @@
           "${modifier}+e" = lib.mkForce "focus up";
           "${modifier}+Return" = "exec ${pkgs.foot}/bin/foot";
           "${modifier}+c" = "exec code";
-          "${modifier}+o" = "exec ${pkgs.firefox}/bin/firefox";
+          "${modifier}+o" = "exec ${pkgs.floorp}/bin/floorp";
           "${modifier}+t" = "exec ${pkgs.armcord}/bin/armcord";
           "${modifier}+Shift+s" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot copy area";
           "${modifier}+q" = "kill";
+          "XF86AudioRaiseVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ +5%'";
+          "XF86AudioLowerVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ -5%'";
+          "XF86AudioMute" = "exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'";
+          "XF86MonBrightnessUp" = "exec 'light -A 5'";
+          "XF86MonBrightnessDown" = "exec 'light -U 5'";
         };
 
       menu = "${pkgs.wofi}/bin/wofi --show drun";
       window.hideEdgeBorders = "both";
       window.titlebar = false;
+      window.commands = [
+        {
+          command = "move to workspace 1; workspace 1";
+          criteria = {
+            app_id = "foot";
+          };
+        }
+        {
+          command = "move to workspace 2; workspace 2";
+          criteria = {
+            app_id = "floorp";
+          };
+        }
+        {
+          command = "move to workspace 3; workspace 3";
+          criteria = {
+            class = "Code";
+          };
+        }
+        {
+          command = "move to workspace 4; workspace 4";
+          criteria = {
+            class = "ArmCord";
+          };
+        }
+      ];
       input = {
         "*" = {
           tap = "enabled";
@@ -268,18 +300,7 @@
 
   home.file.".p10k.zsh".source = ./.p10k.zsh;
   programs.zsh.enable = true;
-  # programs.zsh.antidote.enable = true;
   programs.zsh.enableCompletion = false;
-  # programs.zsh.antidote.plugins = [
-  # "zsh-users/zsh-autosuggestions"
-  # "marlonrichert/zsh-autocomplete"
-  #   "desyncr/auto-ls"
-  #   "jeffreytse/zsh-vi-mode"
-  #   "romkatv/powerlevel10k"
-  #   "zsh-users/zsh-syntax-highlighting"
-  #   "zsh-users/zsh-history-substring-search"
-  # ];
-
 
   programs.zsh.plugins = [
     {
@@ -356,12 +377,72 @@
         sha256 = "1+w0AeVJtu1EK5iNVwk3loenFuIyVlQmlw8TWliHZGI=";
       };
     }
+    {
+      name = "zsh-you-should-use";
+      src = pkgs.fetchFromGitHub {
+        owner = "MichaelAquilina";
+        repo = "zsh-you-should-use";
+        rev = "8e0548c0c2270c3ee422f350106e538d108c3f5b";
+        sha256 = "fJX748lwVP1+GF/aIl1J3c6XAy/AtYCpEHsP8weUNo0=";
+      };
+    }
   ];
 
+  programs.zsh.shellAliases = {
+    e = "exit";
+    ls = "ls --color=auto";
+    ll = "ls -la";
+    ref = "exec zsh";
+
+    ga = "git add";
+    gaa = "git add *";
+    gd = "git diff";
+    gs = "git status";
+    gc = "git commit -m";
+    gps = "git push";
+    gpl = "git pull";
+    gr = "git remote";
+    grs = "git reset";
+    gch = "git checkout";
+    gb = "git branch";
+    gl = "git log";
+
+    srn = "sudo reboot now";
+    ssn = "sudo shutdown now";
+    
+    nrs = "sudo nixos-rebuild switch";
+    nrsd = "sudo nixos-rebuild switch --dry-run";
+    nrb = "sudo nixos-rebuild boot";
+  };
+  
+  programs.zoxide.enable = true;
+  programs.zoxide.enableZshIntegration = true;
+  
   programs.zsh.initExtra = ''
     [[ ! -f /home/dylan/.p10k.zsh ]] || source /home/dylan/.p10k.zsh
     
-    bindkey "key[Up]" up-line-or-search
+    bindkey 'key[Up]' history-substring-search-up
+  '';
+
+  programs.zsh.initExtraBeforeCompInit = ''
+    function zvm_after_init() {
+      bindkey '^I' menu-complete
+      bindkey '^F' vi-forward-char
+      bindkey '^H' backward-kill-word
+      bindkey '^K' kill-line
+
+      bindkey '^[[A' history-substring-search-up
+      bindkey '^[[B' history-substring-search-down
+      bindkey '^[OA' history-substring-search-up
+      bindkey '^[OB' history-substring-search-down
+      bindkey -M menuselect '^[' undo
+      bindkey '^[[Z' reverse-menu-complete
+
+      bindkey '^[[1;5D' vi-backward-word
+      bindkey '^[[1;5C' vi-forward-word
+      bindkey -M vicmd '^[[1;5D' vi-backward-word
+      bindkey -M vicmd '^[[1;5C' vi-forward-word
+    }
   '';
 
   programs.fzf.enable = true;
@@ -380,13 +461,13 @@
   };
   programs.wofi.style =
     ''
-        * {
-          font-family: monospace;
-      }
-  
-      window {
-          background-color: #7c818c;
-      }
+    * {
+    font-family: monospace;
+    }
+
+    window {
+    background-color: #7c818c;
+    }
     ''
   ;
 
@@ -394,3 +475,6 @@
 
   programs.home-manager.enable = true;
 }
+
+
+

@@ -6,15 +6,16 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-    
-  boot.kernelPackages = pkgs.linuxPackages_latest; 
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   security.polkit.enable = true;
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -32,11 +33,10 @@
 
   # Set your time zone.
   time.timeZone = "America/New_York";
-  
+
   programs.zsh.enable = true;
   programs.zsh.enableCompletion = false;
-  # programs.zsh.promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-  # users.defaultUserShell = pkgs.zsh;
+  users.defaultUserShell = pkgs.zsh;
   environment.pathsToLink = [ "/share/zsh" ];
 
   # Select internationalisation properties.
@@ -53,7 +53,7 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
-  
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -102,25 +102,31 @@
   users.users.dylan = {
     isNormalUser = true;
     description = "dylan";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" ];
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
   # Install firefox.
   programs.firefox.enable = true;
-  programs.nm-applet.enable = true;
-
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  
+  environment.variables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+    BROWSER = "floorp"; 
+    
+    WORDCHARS = "*?_-.[]~=&;!#$%^(){}<>";
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
     nil
     nixpkgs-fmt
     vim
@@ -130,8 +136,10 @@
     git
     armcord
     dconf2nix
-    # zsh-powerlevel10k
-    
+    python3
+    floorp
+    pulseaudio
+
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
         vscode-extensions.asvetliakov.vscode-neovim
@@ -142,7 +150,7 @@
       ];
     })
   ];
-  
+
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk
@@ -151,9 +159,10 @@
 
     monaspace
   ];
-  
+
   programs.sway.enable = true;
 
+  programs.light.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
