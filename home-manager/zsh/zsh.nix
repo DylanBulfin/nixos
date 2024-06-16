@@ -103,11 +103,15 @@
     gc = "git commit -m";
     gps = "git push";
     gpl = "git pull";
-    gr = "git remote";
-    grs = "git reset";
+    gr = "git reset";
+    grm = "git rm";
+    grmt = "git remote";
+    grs = "git restore";
     gch = "git checkout";
     gb = "git branch";
     gl = "git log";
+    gf = "git fetch";
+    gcl = "git clone";
 
     srn = "sudo reboot now";
     ssn = "sudo shutdown now";

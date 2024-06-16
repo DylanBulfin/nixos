@@ -2,8 +2,9 @@
 
 {
   imports = [
-    ./sway.nix
-    ./zsh.nix
+    ./sway/sway.nix
+    ./zsh/zsh.nix
+    ./nvim/nvim.nix
   ];
 
   home.username = "dylan";

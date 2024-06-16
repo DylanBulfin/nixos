@@ -8,7 +8,7 @@
   imports =
     [
       # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      ./hardware/laptop/hardware-configuration.nix
     ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -90,7 +90,7 @@
     keyboards = {
       myKMonadOutput = {
         device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
-        config = builtins.readFile ./laptop.kbd;
+        config = builtins.readFile ./kmonad/laptop.kbd;
       };
     };
   };
