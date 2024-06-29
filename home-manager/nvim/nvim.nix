@@ -4,7 +4,7 @@ in {
   programs.neovim = {
     enable = true;
 
-    extraLuaConfig = lib.concatStrings (map lib.fileContents luaFiles);
+    extraLuaConfig = lib.concatMapStringsSep "\n\n" lib.fileContents luaFiles;
     plugins = with pkgs.vimPlugins; [
       nvim-lspconfig
       neodev-nvim
