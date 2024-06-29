@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -12,27 +12,17 @@
 
   home.packages = with pkgs; [
     neofetch
-    # waybar
     mako
     sway-contrib.grimshot
     wofi
     antidote
     swaybg
-
-
+    
     lua-language-server
     nixd
-    # nil
-
-
-    # lspconfig a depedency of neodev, can't install directly
-    # vimPlugins.nvim-lspconfig
-    # vimPlugins.neodev-nvim
-    # vimPlugins.catppuccin-nvim
-
-    # vimPlugins.nvim-treesitter-textsubjects
-    # vimPlugins.nvim-treesitter-textobjects
   ];
+  
+  services.network-manager-applet.enable = true;
 
   programs.foot.enable = true;
   programs.foot.settings = {

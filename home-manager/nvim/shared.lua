@@ -45,7 +45,6 @@ end, {
 
 -- mini.nvim config
 require("mini.ai").setup()
-require("mini.comment").setup()
 require("mini.surround").setup()
 
 if vim.g.vscode then
@@ -115,6 +114,8 @@ if vim.g.vscode then
   Colemak()
   return
 end
+
+require("mini.comment").setup()
 
 -- lspconfig config
 local lspconfig = require('lspconfig')
