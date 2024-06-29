@@ -16,6 +16,12 @@ in {
       nvim-treesitter-parsers.lua
       
       mini-nvim
+      
+      plenary-nvim
+      telescope-fzf-native-nvim
+      telescope-ui-select-nvim
+      telescope-lsp-handlers-nvim
+      telescope-nvim 
     ];
   };
 }

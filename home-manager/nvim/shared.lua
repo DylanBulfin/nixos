@@ -1,3 +1,5 @@
+vim.g.mapleader = " "
+
 function Colemak()
   vim.keymap.set({ "n", "v" }, "m", "h", { desc = "Left" })
   vim.keymap.set({ "n", "v", "o" }, "n", "j", { desc = "Down" })
