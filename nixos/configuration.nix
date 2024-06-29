@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports =
@@ -103,9 +103,6 @@
     isNormalUser = true;
     description = "dylan";
     extraGroups = [ "networkmanager" "wheel" "video" ];
-    packages = with pkgs; [
-      #  thunderbird
-    ];
   };
 
   # Install firefox.
@@ -113,7 +110,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  
+
   environment.variables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
@@ -121,7 +118,7 @@
     
     WORDCHARS = "*?_-.[]~=&;!#$%^(){}<>";
   };
-
+  
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -138,7 +135,7 @@
     python3
     floorp
     pulseaudio
-
+    
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
         vscode-extensions.asvetliakov.vscode-neovim
