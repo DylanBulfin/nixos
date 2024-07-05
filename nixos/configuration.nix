@@ -2,13 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ pkgs, device, ... }:
 
 {
   imports =
     [
       # Include the results of the hardware scan.
-      ./hardware/laptop/hardware-configuration.nix
+      ./hardware/${device}/hardware-configuration.nix
+      ./packages/packages.nix
     ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -114,39 +115,17 @@
   environment.variables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
-    BROWSER = "floorp"; 
-    
+    BROWSER = "floorp";
+
+    # What interrupts ctrl+backspace in zsh
     WORDCHARS = "*?_-.[]~=&;!#$%^(){}<>";
+    # What characters are removed after tab-completion in zsh
+    ZLE_REMOVE_SUFFIX_CHARS = ";\n\C-M\t";
   };
-  
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
-    nixpkgs-fmt
-    vim
-    helix
-    alacritty
-    wl-clipboard
-    git
-    armcord
-    dconf2nix
-    python3
-    floorp
-    pulseaudio
-    
-    (vscode-with-extensions.override {
-      vscodeExtensions = with vscode-extensions; [
-        vscode-extensions.asvetliakov.vscode-neovim
-        vscode-extensions.github.copilot
-        vscode-extensions.github.copilot-chat
-        # bbenoist.nix
-        vscode-extensions.jnoortheen.nix-ide
-        vscode-extensions.sumneko.lua 
-      ];
-    })
-  ];
+  # environment.systemPackages = import ./packages/packages.nix { inherit pkgs device; };
 
   fonts.packages = with pkgs; [
     noto-fonts

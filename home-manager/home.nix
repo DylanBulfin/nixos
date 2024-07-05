@@ -11,7 +11,6 @@
   home.homeDirectory = "/home/dylan";
 
   home.packages = with pkgs; [
-    neofetch
     mako
     sway-contrib.grimshot
     wofi

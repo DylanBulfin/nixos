@@ -86,7 +86,7 @@
 
   wayland.windowManager.sway = {
     enable = true;
-    config = rec {
+    config = {
       modifier = "Mod4";
       down = "n";
       # up = "e";
@@ -147,6 +147,12 @@
             class = "ArmCord";
           };
         }
+        {
+          command = "move to workspace 5; workspace 5";
+          criteria = {
+            app_id = "thunar";
+          };
+        }
       ];
       input = {
         "*" = {
@@ -154,6 +160,7 @@
           drag = "enabled";
           natural_scroll = "enabled";
           click_method = "clickfinger";
+          scroll_factor = "0.15";
         };
       };
     };
