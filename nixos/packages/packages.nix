@@ -13,7 +13,13 @@
         python3
         floorp
         xfce.thunar
-
+        pavucontrol
+      ]
+    )
+    ++
+    (
+      with pkgs.unstable;
+      [
         (vscode-with-extensions.override {
           vscodeExtensions = with vscode-extensions; [
             vscode-extensions.asvetliakov.vscode-neovim
@@ -27,5 +33,5 @@
       ]
     )
     ++
-    import ./${device}.nix { inherit pkgs; };
+    import ./packages-${device}.nix { inherit pkgs; };
 }

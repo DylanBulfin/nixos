@@ -3,6 +3,7 @@ let luaFiles = [ ./shared.lua ./vscode.lua ./nvim.lua ];
 in {
   programs.neovim = {
     enable = true;
+    package = pkgs.unstable.neovim-unwrapped;
 
     extraLuaConfig = lib.concatMapStringsSep "\n\n" lib.fileContents luaFiles;
     plugins = with pkgs.vimPlugins; [

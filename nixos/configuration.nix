@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, device, ... }:
+{ pkgs, device, nixpkgs-unstable, ... }:
 
 {
   imports =
@@ -17,7 +17,16 @@
   security.polkit.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+  
+  nixpkgs.overlays = [
+    (final: prev: {
+      unstable = import nixpkgs-unstable {
+        system = prev.system;
+        config.allowUnfree = true;
+      };
+    })
+  ];
+  
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
