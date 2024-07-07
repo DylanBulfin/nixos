@@ -33,6 +33,15 @@
       };
     }
     {
+      name = "zsh-you-should-use";
+      src = pkgs.fetchFromGitHub {
+        owner = "MichaelAquilina";
+        repo = "zsh-you-should-use";
+        rev = "8e0548c0c2270c3ee422f350106e538d108c3f5b";
+        sha256 = "fJX748lwVP1+GF/aIl1J3c6XAy/AtYCpEHsP8weUNo0=";
+      };
+    }
+    {
       name = "zsh-vi-mode";
       src = pkgs.fetchFromGitHub {
         owner = "jeffreytse";
@@ -77,15 +86,6 @@
         repo = "zsh-history-substring-search";
         rev = "87ce96b1862928d84b1afe7c173316614b30e301";
         sha256 = "1+w0AeVJtu1EK5iNVwk3loenFuIyVlQmlw8TWliHZGI=";
-      };
-    }
-    {
-      name = "zsh-you-should-use";
-      src = pkgs.fetchFromGitHub {
-        owner = "MichaelAquilina";
-        repo = "zsh-you-should-use";
-        rev = "8e0548c0c2270c3ee422f350106e538d108c3f5b";
-        sha256 = "fJX748lwVP1+GF/aIl1J3c6XAy/AtYCpEHsP8weUNo0=";
       };
     }
   ];
@@ -153,5 +153,4 @@
 
   programs.fzf.enable = true;
   programs.fzf.enableZshIntegration = true;
-
 }
