@@ -1,21 +1,21 @@
 {
   description = "A NixOS flake I stole";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-  inputs.nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+  inputs.nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
   inputs.kmonad.url = "git+https://github.com/kmonad/kmonad?submodules=1&dir=nix";
   inputs.kmonad.inputs.nixpkgs.follows = "nixpkgs";
 
-  inputs.home-manager.url = "github:nix-community/home-manager/release-24.05";
+  inputs.home-manager.url = "github:nix-community/home-manager/master";
   inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-  outputs = inputs@{ nixpkgs, nixpkgs-unstable, kmonad, home-manager, ... }: {
+  outputs = inputs@{ nixpkgs, nixpkgs-stable, kmonad, home-manager, ... }: {
     nixosConfigurations.nixos =
       let device = "laptop"; in
       nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit device nixpkgs-unstable; };
+        specialArgs = { inherit device nixpkgs-stable; };
         modules = [
           ./nixos/configuration.nix
 

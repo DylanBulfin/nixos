@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages =
-    (
+  (
       with pkgs;
       [
         nixpkgs-fmt
@@ -14,12 +14,12 @@
         floorp
         xfce.thunar
         pavucontrol
-      ]
-    )
-    ++
-    (
-      with pkgs.unstable;
-      [
+        
+        rustc
+        cargo
+        rust-analyzer
+        rustfmt
+
         (vscode-with-extensions.override {
           vscodeExtensions = with vscode-extensions; [
             vscode-extensions.asvetliakov.vscode-neovim
@@ -28,6 +28,7 @@
             # bbenoist.nix
             vscode-extensions.jnoortheen.nix-ide
             vscode-extensions.sumneko.lua
+            vscode-extensions.rust-lang.rust-analyzer
           ];
         })
       ]

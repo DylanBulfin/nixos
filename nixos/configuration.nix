@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, device, nixpkgs-unstable, ... }:
+{ pkgs, device, nixpkgs-stable, ... }:
 
 {
   imports =
@@ -20,7 +20,7 @@
   
   nixpkgs.overlays = [
     (final: prev: {
-      unstable = import nixpkgs-unstable {
+      stable = import nixpkgs-stable {
         system = prev.system;
         config.allowUnfree = true;
       };
