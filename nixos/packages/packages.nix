@@ -2,23 +2,28 @@
 
 {
   environment.systemPackages =
-  (
+    (
       with pkgs;
       [
         nixpkgs-fmt
         vim
         wl-clipboard
         git
-        armcord
         python3
         floorp
         xfce.thunar
         pavucontrol
-        
+        discord
+
+        # rust
         rustc
         cargo
         rust-analyzer
         rustfmt
+        clippy
+        
+        # C(++)
+        gcc
 
         (vscode-with-extensions.override {
           vscodeExtensions = with vscode-extensions; [
@@ -29,6 +34,7 @@
             vscode-extensions.jnoortheen.nix-ide
             vscode-extensions.sumneko.lua
             vscode-extensions.rust-lang.rust-analyzer
+            vscode-extensions.vadimcn.vscode-lldb
           ];
         })
       ]

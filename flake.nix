@@ -12,7 +12,7 @@
 
   outputs = inputs@{ nixpkgs, nixpkgs-stable, kmonad, home-manager, ... }: {
     nixosConfigurations.nixos =
-      let device = "laptop"; in
+      let device = import ./device.nix; in
       nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit device nixpkgs-stable; };

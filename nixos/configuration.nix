@@ -8,8 +8,9 @@
   imports =
     [
       # Include the results of the hardware scan.
-      ./hardware/${device}/hardware-configuration.nix
+      ./hardware/${device}-hardware.nix
       ./packages/packages.nix
+      ./kmonad/kmonad.nix
     ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -17,7 +18,7 @@
   security.polkit.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
+
   nixpkgs.overlays = [
     (final: prev: {
       stable = import nixpkgs-stable {
@@ -26,7 +27,7 @@
       };
     })
   ];
-  
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -95,16 +96,6 @@
     #media-session.enable = true;
   };
 
-  services.kmonad = {
-    enable = true;
-    keyboards = {
-      myKMonadOutput = {
-        device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
-        config = builtins.readFile ./kmonad/laptop.kbd;
-      };
-    };
-  };
-
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -136,6 +127,13 @@
   # $ nix search wget
   # environment.systemPackages = import ./packages/packages.nix { inherit pkgs device; };
 
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
+
   fonts.packages = with pkgs; [
     noto-fonts
     noto-fonts-cjk
@@ -143,6 +141,8 @@
     meslo-lgs-nf
 
     monaspace
+
+    courier-prime
   ];
 
   programs.sway.enable = true;
