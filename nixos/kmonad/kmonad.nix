@@ -8,7 +8,7 @@ if device == "laptop" then
     keyboards = {
       myKMonadOutput = {
         device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
-        config = builtins.readFile ./kmonad/laptop.kbd;
+        config = builtins.readFile ./laptop.kbd;
       };
     };
   };

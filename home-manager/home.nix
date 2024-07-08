@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./sway/sway.nix
+    ./sway/laptop-sway.nix
     ./zsh/zsh.nix
     ./nvim/nvim.nix
   ];

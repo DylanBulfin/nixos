@@ -8,7 +8,7 @@
   imports =
     [
       # Include the results of the hardware scan.
-      ./hardware/${device}-hardware.nix
+      ../hardware-configuration.nix
       ./packages/packages.nix
       ./kmonad/kmonad.nix
     ];
