@@ -40,7 +40,7 @@
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./configuration.nix
+            ./bootstrap-configuration.nix
           ];
         };
       nixosConfigurations.dylan-desktop = mkDeviceConfig "desktop";
