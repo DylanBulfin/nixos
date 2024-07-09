@@ -41,7 +41,7 @@
       let device = "desktop"; in
       nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit device nixpkgs-stable; };
+        specialArgs = { inherit device nixpkgs-stable inputs; };
         modules = [
           ./nixos/configuration.nix
 

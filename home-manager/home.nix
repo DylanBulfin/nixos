@@ -5,6 +5,7 @@
     ./sway/desktop-sway.nix
     ./zsh/zsh.nix
     ./nvim/nvim.nix
+    ./firefox/firefox.nix
   ];
 
   home.username = "dylan";
@@ -20,15 +21,6 @@
     lua-language-server
     nixd
   ];
-
-  programs.firefox.enable = true;
-  programs.firefox.profiles.dylan = {
-    userChrome = ''
-      #TabsToolbar {
-          display: none !important;
-      }
-    '';
-  };
 
   services.network-manager-applet.enable = true;
 

@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, device, nixpkgs-stable, ... }:
+{ pkgs, device, nixpkgs-stable, inputs, ... }:
 
 {
   imports =
@@ -11,6 +11,7 @@
       ./hardware/${device}-hardware.nix
       ./packages/packages.nix
       ./kmonad/kmonad.nix
+      ./firefox/firefox.nix
     ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -18,6 +19,8 @@
   security.polkit.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
   nixpkgs.overlays = [
     (final: prev: {

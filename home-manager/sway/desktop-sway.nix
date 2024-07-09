@@ -119,18 +119,13 @@
           "XF86AudioMute" = "exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'";
         };
 
-      menu = "${pkgs.wofi}/bin/wofi --show drun";
+      menu = "${pkgs.wofi}/bin/wofi --show drun --monitor DP-1";
       window.hideEdgeBorders = "both";
       window.titlebar = false;
       assigns = {
         "2" = [{ app_id = "^foot$"; }];
         "5" = [{ app_id = "^Code$"; }];
         "4" = [{ app_id = "^thunar$"; }];
-      };
-      input = {
-        "*" = {
-          scroll_factor = "0.50";
-        };
       };
       output = {
         DP-1 = {

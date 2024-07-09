@@ -24,6 +24,8 @@
         
         # C(++)
         gcc
+        
+        nil
 
         (vscode-with-extensions.override {
           vscodeExtensions = with vscode-extensions; [
