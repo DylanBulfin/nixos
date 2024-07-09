@@ -1,0 +1,43 @@
+/*
+Arc-Dark Color Scheme
+*/
+
+*{
+    font-family: MonaspaceNeon;
+}
+
+window {
+    border: 1px solid#5294e2;
+    background-color: #404552;
+}
+
+#input {
+    margin-bottom: 15px;
+    padding:3px;
+    border-radius: 5px;
+    border:none;
+    color: black;
+}
+
+#inner-box {
+    background-color: #4b5160;
+}
+
+#outer-box {
+    margin: 5px;
+    padding:15px;
+    background-color: #404552;
+}
+
+#text {
+    padding: 5px;
+    color: white;
+}
+
+#entry:nth-child(even) {
+    background-color: #404552;
+}
+
+#entry:selected {
+    background-color: #5294e2;
+}

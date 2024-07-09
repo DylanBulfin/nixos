@@ -13,6 +13,7 @@
         xfce.thunar
         pavucontrol
         discord
+        htop
 
         # rust
         rustc

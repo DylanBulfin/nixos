@@ -13,6 +13,28 @@
 /*
 Arc-Dark Color Scheme
 */
+@keyframes blink-warning {
+    70% {
+        color: white;
+    }
+
+    to {
+        color: white;
+        background-color: orange;
+    }
+}
+
+@keyframes blink-critical {
+    70% {
+      color: white;
+    }
+
+    to {
+        color: white;
+        background-color: red;
+    }
+}
+
 /* -----------------------------------------------------------------------------
  * Base styles
  * -------------------------------------------------------------------------- */
@@ -31,25 +53,29 @@ Arc-Dark Color Scheme
     background: transparent;
     color: #bebebe;
     background-color: #404552;
-    /*font-family: UbuntuMono;*/
+    font-family: UbuntuMono;
     font-size: 14px;
 }
+
 /* Every modules */
-#battery, 
-#mode, 
-#pulseaudio,
-#network,
-#cpu,
-#memory,
-#temperature,
+#battery,
+#clock,
 #backlight,
-#clock {
-    padding:0.1rem 0.6rem;
+#cpu,
+#custom-keyboard-layout,
+#memory,
+#mode,
+#custom-weather,
+#network,
+#pulseaudio,
+#temperature,
+#tray,
+#idle_inhibitor,
+#custom-PBPbattery {
+    padding:0.5rem 0.6rem;
     margin: 1px 0px;
-    font-size: 16px;
-    font-weight: bold;
 }
-/* Every modules */
+
 /* -----------------------------------------------------------------------------
  * Modules styles
  * -------------------------------------------------------------------------- */
@@ -58,8 +84,6 @@ Arc-Dark Color Scheme
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
-    font-size: 16px;
-    font-weight: bold;
 }
 
 #battery.warning {
@@ -80,21 +104,62 @@ Arc-Dark Color Scheme
     animation-duration: 2s;
 }
 
+#cpu.warning {
+    color: orange;
+}
+
+#cpu.critical {
+    color: red;
+}
+
+#memory {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#memory.warning {
+    color: orange;
+ }
+
+#memory.critical {
+    color: red;
+    animation-name: blink-critical;
+    animation-duration: 2s;
+    padding-left:5px;
+    padding-right:5px;
+}
 
 #mode {
     background: #5294e2;
     border-bottom: 3px transparent;
     color:white;
     margin-left: 5px;
-    padding: 6px;
+    padding: 7px;
 }
 
-/* #window {
+#network.disconnected {
+    color: orange;
+}
+
+#pulseaudio {
+    padding-top:6px;
+}
+
+#pulseaudio.muted {
+    color: #5294e2;
+}
+
+#temperature.critical {
+    color: red;
+}
+
+#window {
     font-weight: bold;
-} */
+}
 
 #workspaces {
-    font-size:16px;
+    font-size:13px;
     color: white;
 }
 
@@ -111,12 +176,24 @@ Arc-Dark Color Scheme
     padding-left:0;
 }
 
-#workspices button.urgent {
+#workspaces button.urgent {
     border-color: #c9545d;
     color: #c9545d;
 }
 
-#clock {
-    font-size: 16px;
-    font-weight: bold;
+#custom-power {
+    margin-left:15px;
+    margin-right:15px;
+    font-size:15px;
+}
+
+#custom-launcher {
+    font-size:15px;
+    margin-left:15px;
+    margin-right:10px;
+}
+
+#backlight.icon {
+    padding-right:1px;
+    font-size: 13px;
 }

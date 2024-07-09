@@ -4,76 +4,152 @@
   imports = [
     ./${device}-sway.nix
   ];
-  
-  programs.waybar.enable = true;
-  home.file."wallpaper.png".source = ./wallpaper.png;
 
-  programs.waybar.style = ./style.css;
+  programs.waybar.enable = true;
+
+  programs.waybar.style = ./misc/waybar.css;
 
   programs.waybar.settings = {
     mainBar = {
       layer = "top";
       position = "top";
       height = 30;
-      modules-left = [ "sway/workspaces" "sway/mode" ];
-      modules-center = [ "sway/window" ];
-      modules-right = [ "pulseaudio" "network" "cpu" "memory" "temperature" "backlight" ]
-        ++ (if device == "laptop" then [ "battery" ] else [ ])
-        ++ [ "clock" ];
-      "clock" = {
-        # "timezone"= "America/New_York",
-        "tooltip-format" = "<big>{=%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-        "format-alt" = "{=%Y-%m-%d}";
+
+
+      modules-left = [
+        "sway/workspaces"
+        "sway/mode"
+      ];
+
+      "modules-center" = [
+      ];
+
+      "modules-right" = [
+        "network"
+        "memory"
+        "cpu"
+        "pulseaudio"
+        "battery"
+        #"custom/PBPbattery"
+        "clock"
+        "tray"
+        #"custom/weather"
+        "custom/power"
+      ];
+
+      "battery" = {
+        "states" = {
+          # "good"= 95
+          "warning" = 30;
+          "critical" = 15;
+        };
+        "format" = "{capacity}% {icon}";
+        "format-charging" = "{capacity}% ";
+        "format-plugged" = "{capacity}% ";
+        # "format-good"= "", # An empty format will hide the module
+        # "format-full"= "",
+        "format-icons" = [ "" "" "" "" "" ];
       };
+
+      "clock" = {
+        "interval" = 10;
+        "format-alt" = " {:%e %b %Y}";
+        "format" = "{:%H:%M}";
+        "tooltip-format" = "{:%e %B %Y}";
+      };
+
       "cpu" = {
-        "format" = "{usage}% ";
+        "interval" = 5;
+        "format" = "  {usage}% ({load})";
+        "states" = {
+          "warning" = 70;
+          "critical" = 90;
+        };
+        "on-click" = "foot -e 'htop'";
+      };
+
+      "memory" = {
+        "interval" = 5;
+        "format" = " {}%";
+        "on-click" = "foot -e 'htop'";
+        "states" = {
+          "warning" = 70;
+          "critical" = 90;
+        };
+      };
+
+      "network" = {
+        "interval" = 5;
+        "format-wifi" = "  {essid} ({signalStrength}%)";
+        "format-ethernet" = "  {ifname}: {ipaddr}/{cidr}";
+        "format-disconnected" = "⚠  Disconnected";
+        "tooltip-format" = "{ifname}: {ipaddr}";
+        "on-click" = "foot -e 'nmtui'";
+      };
+
+      "network#vpn" = {
+        "interface" = "tun0";
+        "format" = "  {essid} ({signalStrength}%)";
+        "format-disconnected" = "⚠  Disconnected";
+        "tooltip-format" = "{ifname}: {ipaddr}/{cidr}";
+      };
+
+      "sway/mode" = {
+        "format" = "{}";
         "tooltip" = false;
       };
-      "memory" = {
-        "format" = "{}% ";
+
+      "sway/window" = {
+        "format" = "{}";
+        "max-length" = 120;
       };
-      "temperature" = {
-        # "thermal-zone"= 2;
-        # "hwmon-path"= "/sys/class/hwmon/hwmon2/temp1_input";
-        "critical-threshold" = 80;
-        # "format-critical"= "{temperatureC}°C {icon}";
-        "format" = "{temperatureC}°C {icon}";
-        "format-icons" = [ "" "" "" ];
+
+      "sway/workspaces" = {
+        "disable-scroll" = true;
+        "disable-markup" = false;
+        "all-outputs" = false;
+        "format" = "  {icon}  ";
       };
-      "backlight" = {
-        # "device"= "acpi_video1";
-        "format" = "{percent}% {icon}";
-        "format-icons" = [ "" "" "" "" "" "" "" "" "" ];
-      };
-      "network" = {
-        # "interface"= "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi" = "{essid} ({signalStrength}%) ";
-        "format-ethernet" = "{ipaddr}/{cidr} ";
-        "tooltip-format" = "{ifname} via {gwaddr} ";
-        "format-linked" = "{ifname} (No IP) ";
-        "format-disconnected" = "Disconnected ⚠";
-        "format-alt" = "{ifname}= {ipaddr}/{cidr}";
-      };
+
       "pulseaudio" = {
-        # "scroll-step"= 1, // %, can be a float
-        "format" = "{volume}% {icon}    {format_source}";
-        "format-bluetooth" = "{volume}% {icon}     {format_source}";
-        "format-bluetooth-muted" = " {icon}     {format_source}";
-        "format-muted" = "     {format_source}";
-        "format-source" = "{volume}%     ";
+        "scroll-step" = 1;
+        "format" = "{volume}% {icon}";
+        "format-bluetooth" = "{volume}% {icon}  {format_source}";
+        "format-bluetooth-muted" = " {icon}  {format_source}";
+        "format-muted" = " {format_source}";
+        "format-source" = "{volume}% ";
         "format-source-muted" = "";
         "format-icons" = {
-          "headphone" = "";
-          "hands-free" = "";
-          "headset" = "";
+          "headphone" = "";
+          "hands-free" = "וֹ";
+          "headset" = "  ";
           "phone" = "";
           "portable" = "";
           "car" = "";
-          "default" = [ "" "" "" ];
+          "default" = [ "" ];
         };
         "on-click" = "pavucontrol";
+        "on-scroll-up" = "pactl set-sink-volume @DEFAULT_SINK@ +2%";
+        "on-scroll-down" = "pactl set-sink-volume @DEFAULT_SINK@ -2%";
       };
+
+      "tray" = {
+        "icon-size" = 18;
+        "spacing" = 10;
+      };
+
+      "custom/power" = {
+        "format" = "⏻";
+        "on-click" = "exec /home/dylan/.config/sway/misc/power-menu.sh";
+        "tooltip" = false;
+      };
+
     };
+  };
+
+  home.file.".config/sway/misc" = {
+    source = ./misc;
+    recursive = true;
   };
 
   wayland.windowManager.sway = {
@@ -87,7 +163,7 @@
       # Use kitty as default terminal
       terminal = "foot";
       startup = [
-        { command = "swaybg -i /home/dylan/wallpaper.png -m fill"; }
+        { command = "swaybg -i /home/dylan/.config/sway/misc/wallpaper.png -m fill"; }
         { command = "swamsg workspace 3"; }
         { command = "swamsg workspace 2"; }
         { command = "swaymsg workspace 1"; }
@@ -99,12 +175,14 @@
         in
         lib.mkOptionDefault {
           # need to do it this way bc up option doesn't work since mod+e defined already
+          # at some point i need to get rid of the defaults
           "${modifier}+e" = lib.mkForce "focus up";
-          "${modifier}+Return" = "exec ${pkgs.foot}/bin/foot";
+          "${modifier}+Return" = "exec foot";
+          "${modifier}+Shift+Return" = "exec foot --app-id alternate";
           "${modifier}+c" = "exec code";
           "${modifier}+o" = "exec firefox";
-          "${modifier}+t" = "exec ${pkgs.armcord}/bin/armcord";
-          "${modifier}+Shift+s" = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot copy area";
+          "${modifier}+t" = "exec discord";
+          "${modifier}+Shift+s" = "exec grimshot copy area";
           "${modifier}+q" = "kill";
           "XF86AudioRaiseVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ +5%'";
           "XF86AudioLowerVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ -5%'";
@@ -112,4 +190,10 @@
         };
     };
   };
+
+  programs.wofi.enable = true;
+  programs.wofi.settings = {
+    columns = 2;
+  };
+  programs.wofi.style = builtins.readFile ./misc/wofi.css;
 }
