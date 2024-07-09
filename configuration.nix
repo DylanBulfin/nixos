@@ -2,37 +2,19 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, device, nixpkgs-stable, ... }:
+{ config, pkgs, ... }:
 
 {
   imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware/${device}-hardware.nix
-      ./packages/packages.nix
-      ./kmonad/kmonad.nix
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
     ];
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  security.polkit.enable = true;
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  nixpkgs.overlays = [
-    (final: prev: {
-      stable = import nixpkgs-stable {
-        system = prev.system;
-        config.allowUnfree = true;
-      };
-    })
-  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "dylan-${device}"; # Define your hostname.
+  networking.hostName = "dylan-desktop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -44,11 +26,6 @@
 
   # Set your time zone.
   time.timeZone = "America/New_York";
-
-  programs.zsh.enable = true;
-  programs.zsh.enableCompletion = false;
-  users.defaultUserShell = pkgs.zsh;
-  environment.pathsToLink = [ "/share/zsh" ];
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -70,16 +47,18 @@
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
-    xkb.layout = "us";
+    layout = "us";
+    xkbVariant = "";
   };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+nix.settings.experimental-features = ["nix-command" "flakes"];
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -102,52 +81,28 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dylan = {
     isNormalUser = true;
-    description = "dylan";
-    extraGroups = [ "networkmanager" "wheel" "video" ];
+    description = "Dylan";
+    extraGroups = [ "networkmanager" "wheel" ];
+    packages = with pkgs; [
+    #  thunderbird
+    ];
   };
 
   # Install firefox.
-  programs.firefox.enable = true;
+  # programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  environment.variables = {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
-    BROWSER = "floorp";
-
-    # What interrupts ctrl+backspace in zsh
-    WORDCHARS = "*?_-.[]~=&;!#$%^(){}<>";
-    # What characters are removed after tab-completion in zsh
-    ZLE_REMOVE_SUFFIX_CHARS = ";\n\C-M\t";
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  # environment.systemPackages = import ./packages/packages.nix { inherit pkgs device; };
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-  };
-
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    meslo-lgs-nf
-
-    monaspace
-
-    courier-prime
+  environment.systemPackages = with pkgs; [
+  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+helix
+git
+  #  wget
   ];
 
-  programs.sway.enable = true;
-
-  programs.light.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, device, ... }:
 
 {
   imports = [
-    ./sway/laptop-sway.nix
+    ./sway/desktop-sway.nix
     ./zsh/zsh.nix
     ./nvim/nvim.nix
   ];
@@ -16,11 +16,20 @@
     wofi
     antidote
     swaybg
-    
+
     lua-language-server
     nixd
   ];
-  
+
+  programs.firefox.enable = true;
+  programs.firefox.profiles.dylan = {
+    userChrome = ''
+      #TabsToolbar {
+          display: none !important;
+      }
+    '';
+  };
+
   services.network-manager-applet.enable = true;
 
   programs.foot.enable = true;
@@ -34,6 +43,7 @@
 
   programs.home-manager.enable = true;
 }
+
 
 
 

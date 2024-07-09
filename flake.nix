@@ -11,7 +11,7 @@
   inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
   outputs = inputs@{ nixpkgs, nixpkgs-stable, kmonad, home-manager, ... }: {
-    nixosConfigurations.dylan-laptop =
+    nixosConfigurations.nixos =
       let device = "laptop"; in
       nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -28,6 +28,13 @@
 
             home-manager.users.dylan = import ./home-manager/home.nix;
           }
+        ];
+      };
+    nixosConfigurations.dylan-laptop =
+      nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./configuration.nix
         ];
       };
     nixosConfigurations.dylan-desktop =
