@@ -35,20 +35,4 @@
       { output = "DP-3"; workspace = "7"; }
     ];
   };
-
-  programs.wofi.enable = true;
-  programs.wofi.settings = {
-    columns = 2;
-  };
-  programs.wofi.style =
-    ''
-      * {
-      font-family: monospace;
-      }
-
-      window {
-      background-color: #7c818c;
-      }
-    ''
-  ;
 }
