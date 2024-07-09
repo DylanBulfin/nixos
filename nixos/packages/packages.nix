@@ -10,7 +10,6 @@
         wl-clipboard
         git
         python3
-        floorp
         xfce.thunar
         pavucontrol
         discord

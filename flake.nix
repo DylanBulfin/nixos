@@ -10,51 +10,40 @@
   inputs.home-manager.url = "github:nix-community/home-manager/master";
   inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-  outputs = inputs@{ nixpkgs, nixpkgs-stable, kmonad, home-manager, ... }: {
-    nixosConfigurations.nixos =
-      let device = "laptop"; in
-      nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit device nixpkgs-stable; };
-        modules = [
-          ./nixos/configuration.nix
+  outputs = inputs@{ nixpkgs, nixpkgs-stable, kmonad, home-manager, ... }:
+    let
+      mkDeviceConfig = dev:
+        let device = "${dev}"; in
+        nixpkgs.lib.nixosSystem {
 
-          kmonad.nixosModules.default
+          system = "x86_64-linux";
+          specialArgs = { inherit device nixpkgs-stable inputs; };
+          modules = [
+            ./nixos/configuration.nix
 
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
+            kmonad.nixosModules.default
 
-            home-manager.users.dylan = import ./home-manager/home.nix;
-          }
-        ];
-      };
-    nixosConfigurations.dylan-laptop =
-      nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./configuration.nix
-        ];
-      };
-    nixosConfigurations.dylan-desktop =
-      let device = "desktop"; in
-      nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit device nixpkgs-stable inputs; };
-        modules = [
-          ./nixos/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.extraSpecialArgs = { inherit device; };
 
-          kmonad.nixosModules.default
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
 
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            home-manager.users.dylan = import ./home-manager/home.nix;
-          }
-        ];
-      };
-  };
+              home-manager.users.dylan = import ./home-manager/home.nix;
+            }
+          ];
+        };
+    in
+    {
+      nixosConfigurations.nixos =
+        nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./configuration.nix
+          ];
+        };
+      nixosConfigurations.dylan-desktop = mkDeviceConfig "desktop";
+      nixosConfigurations.dylan-laptop = mkDeviceConfig "laptop";
+    };
 }

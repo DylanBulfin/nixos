@@ -118,7 +118,7 @@
   environment.variables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
-    BROWSER = "floorp";
+    BROWSER = "firefox";
 
     # What interrupts ctrl+backspace in zsh
     WORDCHARS = "*?_-.[]~=&;!#$%^(){}<>";
