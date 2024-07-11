@@ -19,8 +19,12 @@
   security.polkit.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  
+  hardware.keyboard.qmk.enable = true;
 
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+
+  services.gvfs.enable = true;
 
   nixpkgs.overlays = [
     (final: prev: {

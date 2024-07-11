@@ -22,14 +22,14 @@
     nixd
   ];
 
-  services.network-manager-applet.enable = true;
-
   programs.foot.enable = true;
   programs.foot.settings = {
     main = {
       font = "Noto Sans Mono:size=11";
     };
   };
+  
+  programs.broot.enable = true;
 
   home.stateVersion = "23.11";
 

@@ -4,11 +4,38 @@
     menu = "${pkgs.wofi}/bin/wofi --show drun --monitor DP-1";
     window.hideEdgeBorders = "both";
     window.titlebar = false;
-    assigns = {
-      "2" = [{ app_id = "^foot$"; }];
-      "5" = [{ app_id = "^Code$"; }];
-      "4" = [{ app_id = "^thunar$"; }];
-    };
+    window.commands = [
+      {
+        command = "move to workspace 2; workspace 2";
+        criteria = {
+          app_id = "foot";
+        };
+      }
+      {
+        command = "move to workspace 3; workspace 3";
+        criteria = {
+          app_id = "firefox";
+        };
+      }
+      {
+        command = "move to workspace 5; workspace 5";
+        criteria = {
+          class = "Code";
+        };
+      }
+      {
+        command = "move to workspace 4; workspace 4";
+        criteria = {
+          class = "discord";
+        };
+      }
+      {
+        command = "move to workspace 7; workspace 7";
+        criteria = {
+          app_id = "thunar";
+        };
+      }
+    ];
     output = {
       DP-1 = {
         mode = "2560x1440";
