@@ -158,6 +158,8 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+  
+  services.openssh.enable = true;
 
   # List services that you want to enable:
 
