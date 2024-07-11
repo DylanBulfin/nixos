@@ -2,10 +2,10 @@
 
 {
   imports = [
-    ./sway/sway.nix
-    ./zsh/zsh.nix
-    ./nvim/nvim.nix
-    ./firefox/firefox.nix
+    ./modules/sway/sway.nix
+    ./modules/zsh/zsh.nix
+    ./modules/nvim/nvim.nix
+    ./modules/firefox/firefox.nix
   ];
 
   home.username = "dylan";
