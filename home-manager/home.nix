@@ -12,14 +12,6 @@
   home.homeDirectory = "/home/dylan";
 
   home.packages = with pkgs; [
-    mako
-    sway-contrib.grimshot
-    wofi
-    antidote
-    swaybg
-
-    lua-language-server
-    nixd
   ];
 
   programs.foot.enable = true;

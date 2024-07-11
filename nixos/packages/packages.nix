@@ -21,12 +21,25 @@
         rust-analyzer
         rustfmt
         clippy
-        
+
         # C(++)
         gcc
-        
+
+        # nix
         nil
-        
+        nixd
+
+        # Lua
+        lua-language-server
+
+        # For sway
+        mako
+        sway-contrib.grimshot
+        wofi
+        antidote
+        swaybg
+
+
         (vscode-with-extensions.override {
           vscodeExtensions = with vscode-extensions; [
             vscode-extensions.asvetliakov.vscode-neovim
