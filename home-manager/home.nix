@@ -22,6 +22,10 @@
   };
   
   programs.broot.enable = true;
+  
+  services.wlsunset.enable = true;
+  services.wlsunset.sunset = "19:00";
+  services.wlsunset.sunrise = "09:00";
 
   home.stateVersion = "23.11";
 
