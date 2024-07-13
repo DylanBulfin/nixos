@@ -42,14 +42,15 @@
 
         (vscode-with-extensions.override {
           vscodeExtensions = with vscode-extensions; [
-            vscode-extensions.asvetliakov.vscode-neovim
-            vscode-extensions.github.copilot
-            vscode-extensions.github.copilot-chat
+            asvetliakov.vscode-neovim
+            github.copilot
+            github.copilot-chat
             # bbenoist.nix
-            vscode-extensions.jnoortheen.nix-ide
-            vscode-extensions.sumneko.lua
-            vscode-extensions.rust-lang.rust-analyzer
-            vscode-extensions.vadimcn.vscode-lldb
+            jnoortheen.nix-ide
+            sumneko.lua
+            rust-lang.rust-analyzer
+            vadimcn.vscode-lldb
+            mechatroner.rainbow-csv
           ];
         })
       ]

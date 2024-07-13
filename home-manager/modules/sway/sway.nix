@@ -195,7 +195,9 @@
 
   programs.wofi.enable = true;
   programs.wofi.settings = {
-    columns = 2;
+    width = "25%";
+    layer = "overlay";
+    # columns = 2;
   };
   programs.wofi.style = builtins.readFile ./misc/wofi.css;
 }
