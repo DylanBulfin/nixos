@@ -42,27 +42,6 @@ if vim.g.vscode then
   vim.keymap.set("n", "ze", call("editor.unfold"))
   vim.keymap.set("v", "ze", call("editor.unfold"))
 
-
-  -- require("nvim-treesitter.configs").setup({
-  --   textobjects = {
-  --     select = {
-  --       enable = true,
-  --       lookahead = true,
-  --       keymaps = {
-  --         -- Select around/inside function/class
-  --         ["af"] = { query = "@function.outer", desc = "Around function" },
-  --         ["if"] = { query = "@function.inner", desc = "Inside function" },
-  --         ["ac"] = { query = "@class.outer", desc = "Around class" },
-  --         ["ic"] = { query = "@class.inner", desc = "Inside class" },
-  --         ["ab"] = { query = "@block.outer", desc = "Around block" },
-  --         ["ib"] = { query = "@block.inner", desc = "Inside block" },
-
-  --       },
-  --     }
-  --   }
-  -- })
-  --
-
   Colemak()
   return
 end
