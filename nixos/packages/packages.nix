@@ -39,6 +39,7 @@
         antidote
         swaybg
 
+        page-rs
 
         (vscode-with-extensions.override {
           vscodeExtensions = with vscode-extensions; [

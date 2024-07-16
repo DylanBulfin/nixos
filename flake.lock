@@ -77,12 +77,47 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1721156933,
+        "narHash": "sha256-XTH7hsb4PtLe/BQIIKZ4uGx+xu5U3i3jvfdVtoQxym8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "36660ac280038eecfea8f4d95710bbd3829038d4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "release-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "page-rs": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1721158068,
+        "narHash": "sha256-f5YFtP85hnryCu1it+BpfKgjQF1dO63CjhUkVMmeHwc=",
+        "owner": "DylanBulfin",
+        "repo": "page-rs",
+        "rev": "99e1af9074bcc0f4afbef6ea19d0bf2b06dd53c4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DylanBulfin",
+        "repo": "page-rs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "kmonad": "kmonad",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-stable": "nixpkgs-stable"
+        "nixpkgs-stable": "nixpkgs-stable",
+        "page-rs": "page-rs"
       }
     }
   },
