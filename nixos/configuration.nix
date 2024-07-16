@@ -41,7 +41,7 @@
   security.rtkit.enable = true;
   security.polkit.enable = true;
 
-  networking.hostName = "dylan-${device}"; 
+  networking.hostName = "dylan-${device}";
   networking.networkmanager.enable = true;
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -75,6 +75,9 @@
     isNormalUser = true;
     description = "dylan";
     extraGroups = [ "networkmanager" "wheel" "video" ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILS8AaOSiRHEG4Egsvkms/s7e3Xqt1+G08ap9oB+egL5 dylan@nixos"
+    ];
   };
 
   time.timeZone = "America/New_York";
