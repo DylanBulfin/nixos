@@ -44,7 +44,5 @@ if vim.g.vscode then
 
   Colemak()
 
-  require("mini.surround").setup()
-
   return
 end

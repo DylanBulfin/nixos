@@ -13,7 +13,14 @@ in {
       nvim-treesitter
       nvim-treesitter-textsubjects
       nvim-treesitter-textobjects
+      
       nvim-treesitter-parsers.lua
+      nvim-treesitter-parsers.rust
+      nvim-treesitter-parsers.toml
+      nvim-treesitter-parsers.bash
+      nvim-treesitter-parsers.regex
+      nvim-treesitter-parsers.haskell
+      nvim-treesitter-parsers.python
       
       mini-nvim
       
@@ -22,6 +29,9 @@ in {
       telescope-ui-select-nvim
       telescope-lsp-handlers-nvim
       telescope-nvim 
+      
+      leap-nvim
+      flit-nvim
     ];
   };
 }
