@@ -43,5 +43,8 @@ if vim.g.vscode then
   vim.keymap.set("v", "ze", call("editor.unfold"))
 
   Colemak()
+
+  require("mini.surround").setup()
+
   return
 end
