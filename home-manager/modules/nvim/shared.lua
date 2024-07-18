@@ -11,7 +11,7 @@ function Colemak()
   vim.keymap.set({ "n", "v", "o" }, "e", "k", { desc = "Up" })
   vim.keymap.set({ "n", "v" }, "i", "l", { desc = "Right" })
 
-  vim.keymap.set({ "n", "v", "o" }, "j", "e", { desc = "Next end of word" })
+  -- vim.keymap.set({ "n", "v", "o" }, "j", "e", { desc = "Next end of word" })
   vim.keymap.set({ "n", "v" }, "k", "n", { desc = "Next match" })
   vim.keymap.set({ "n", "v" }, "K", "N", { desc = "Previous match" })
   vim.keymap.set({ "n", "v" }, "u", "i", { desc = "Insert mode" })
@@ -49,31 +49,37 @@ end, {
 
 -- mini.nvim config
 require("mini.ai").setup({
--- Table with textobject id as fields, textobject specification as values.
-  -- Also use this to disable builtin textobjects. See |MiniAi.config|.
-  custom_textobjects = nil,
-
-  -- Module mappings. Use `''` (empty string) to disable one.
   mappings = {
-    -- Main textobject prefixes
     around = 'a',
     inside = 'b',
 
-    -- Next/last variants
     around_next = 'an',
     inside_next = 'bn',
     around_last = 'al',
     inside_last = 'bl',
-
-    -- Move cursor to corresponding edge of `a` textobject
-    goto_left = 'g[',
-    goto_right = 'g]',
   },
 
-  -- Number of lines within which textobject is searched
   n_lines = 150,
 })
 require("mini.surround").setup()
+require("mini.move").setup({
+  {
+    mappings = {
+      -- Move current seletion in Visual mode
+      left = '<M-m>',
+      right = '<M-i>',
+      down = '<M-n>',
+      up = '<M-e>',
+
+      -- Move current line in Normal mode
+      line_left = '<M-m>',
+      line_right = '<M-i>',
+      line_down = '<M-n>',
+      line_up = '<M-e>',
+    },
+
+  }
+})
 
 -- textobjects/subjects setup
 require("nvim-treesitter.configs").setup({
@@ -123,7 +129,7 @@ require("nvim-treesitter.configs").setup({
       ["<CR>"] = "textsubjects-smart",
     },
   },
-})
+}) 
 
 local rp = require("nvim-treesitter.textobjects.repeatable_move")
 
@@ -133,3 +139,10 @@ vim.keymap.set({ "n", "x", "o" }, ",", rp.repeat_last_move_previous)
 
 -- flit (helix-style multi-line ftFT)
 require("flit").setup()
+
+-- leap (jump around screen)
+vim.keymap.set('n',        'j', '<Plug>(leap)')
+vim.keymap.set('n',        'J', '<Plug>(leap-from-window)')
+vim.keymap.set({'x', 'o'}, 'j', '<Plug>(leap-forward)')
+vim.keymap.set({'x', 'o'}, 'J', '<Plug>(leap-backward)')
+vim.keymap.set({'n', 'x', 'o'}, 'gj', '<Plug>(leap-from-window)')
