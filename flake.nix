@@ -10,7 +10,8 @@
   inputs.home-manager.url = "github:nix-community/home-manager/master";
   inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-  inputs.page-rs.url = "github:DylanBulfin/page-rs";
+  # inputs.page-rs.url = "github:DylanBulfin/page-rs";
+  inputs.page-rs.url = "/home/dylan/repos/rust/page-rs";
 
   outputs = inputs@{ nixpkgs, nixpkgs-stable, kmonad, home-manager, page-rs, ... }:
     let
@@ -30,12 +31,13 @@
 
             home-manager.nixosModules.home-manager
             {
-              home-manager.extraSpecialArgs = { inherit device; };
-
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-
-              home-manager.users.dylan = import ./home-manager/home.nix;
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.dylan = import ./home-manager/home.nix;
+                extraSpecialArgs = { inherit device; };
+                sharedModules = [ page-rs.nixosModules.default ];
+              };
             }
           ];
         };

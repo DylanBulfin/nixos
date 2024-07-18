@@ -21,6 +21,8 @@
     };
   };
   
+  programs.page-rs.enable = true;
+  
   programs.broot.enable = true;
   
   services.wlsunset.enable = true;

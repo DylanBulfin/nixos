@@ -98,17 +98,17 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1721158068,
-        "narHash": "sha256-f5YFtP85hnryCu1it+BpfKgjQF1dO63CjhUkVMmeHwc=",
-        "owner": "DylanBulfin",
-        "repo": "page-rs",
-        "rev": "99e1af9074bcc0f4afbef6ea19d0bf2b06dd53c4",
-        "type": "github"
+        "lastModified": 1721265232,
+        "narHash": "sha256-TCu8RYizdOkCzDi6yjG1Wi358E5nimM4UF0TE7duuNo=",
+        "ref": "refs/heads/main",
+        "rev": "026ea9207ae0bcf30b2f3085ee69be826dbf9271",
+        "revCount": 11,
+        "type": "git",
+        "url": "file:///home/dylan/repos/rust/page-rs"
       },
       "original": {
-        "owner": "DylanBulfin",
-        "repo": "page-rs",
-        "type": "github"
+        "type": "git",
+        "url": "file:///home/dylan/repos/rust/page-rs"
       }
     },
     "root": {
