@@ -1,6 +1,11 @@
 vim.g.mapleader = " "
 
 function Colemak()
+  -- Bindings created by neovim-vscode extension for multi-cursor support
+  vim.keymap.del("x", "ma")
+  vim.keymap.del("x", "mi")
+  vim.keymap.del("x", "mA")
+  vim.keymap.del("x", "mI")
   vim.keymap.set({ "n", "v" }, "m", "h", { desc = "Left" })
   vim.keymap.set({ "n", "v", "o" }, "n", "j", { desc = "Down" })
   vim.keymap.set({ "n", "v", "o" }, "e", "k", { desc = "Up" })
@@ -43,7 +48,31 @@ end, {
 })
 
 -- mini.nvim config
-require("mini.ai").setup()
+require("mini.ai").setup({
+-- Table with textobject id as fields, textobject specification as values.
+  -- Also use this to disable builtin textobjects. See |MiniAi.config|.
+  custom_textobjects = nil,
+
+  -- Module mappings. Use `''` (empty string) to disable one.
+  mappings = {
+    -- Main textobject prefixes
+    around = 'a',
+    inside = 'b',
+
+    -- Next/last variants
+    around_next = 'an',
+    inside_next = 'bn',
+    around_last = 'al',
+    inside_last = 'bl',
+
+    -- Move cursor to corresponding edge of `a` textobject
+    goto_left = 'g[',
+    goto_right = 'g]',
+  },
+
+  -- Number of lines within which textobject is searched
+  n_lines = 150,
+})
 require("mini.surround").setup()
 
 -- textobjects/subjects setup
@@ -57,11 +86,11 @@ require("nvim-treesitter.configs").setup({
       keymaps = {
         -- Select around/inside function/class
         ["af"] = { query = "@function.outer", desc = "Around function" },
-        ["if"] = { query = "@function.inner", desc = "Inside function" },
+        ["bf"] = { query = "@function.inner", desc = "Inside function" },
         ["ac"] = { query = "@class.outer", desc = "Around class" },
-        ["ic"] = { query = "@class.inner", desc = "Inside class" },
+        ["bc"] = { query = "@class.inner", desc = "Inside class" },
         ["ab"] = { query = "@block.outer", desc = "Around block" },
-        ["ib"] = { query = "@block.inner", desc = "Inside block" },
+        ["bb"] = { query = "@block.inner", desc = "Inside block" },
       },
     },
     move = {
