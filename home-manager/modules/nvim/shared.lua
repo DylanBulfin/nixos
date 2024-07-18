@@ -62,24 +62,24 @@ require("mini.ai").setup({
   n_lines = 150,
 })
 require("mini.surround").setup()
-require("mini.move").setup({
+require("mini.move").setup(
   {
     mappings = {
-      -- Move current seletion in Visual mode
-      left = '<M-m>',
-      right = '<M-i>',
-      down = '<M-n>',
-      up = '<M-e>',
+      -- Move current selection in Visual mode
+      left = '<C-Left>',
+      right = '<C-Right>',
+      down = '<C-Down>',
+      up = '<C-Up>',
 
       -- Move current line in Normal mode
-      line_left = '<M-m>',
-      line_right = '<M-i>',
-      line_down = '<M-n>',
-      line_up = '<M-e>',
+      line_left = '<C-Left>',
+      line_right = '<C-Right>',
+      line_down = '<C-Down>',
+      line_up = '<C-Up>',
     },
 
   }
-})
+)
 
 -- textobjects/subjects setup
 require("nvim-treesitter.configs").setup({
@@ -129,7 +129,7 @@ require("nvim-treesitter.configs").setup({
       ["<CR>"] = "textsubjects-smart",
     },
   },
-}) 
+})
 
 local rp = require("nvim-treesitter.textobjects.repeatable_move")
 
@@ -141,8 +141,8 @@ vim.keymap.set({ "n", "x", "o" }, ",", rp.repeat_last_move_previous)
 require("flit").setup()
 
 -- leap (jump around screen)
-vim.keymap.set('n',        'j', '<Plug>(leap)')
-vim.keymap.set('n',        'J', '<Plug>(leap-from-window)')
-vim.keymap.set({'x', 'o'}, 'j', '<Plug>(leap-forward)')
-vim.keymap.set({'x', 'o'}, 'J', '<Plug>(leap-backward)')
-vim.keymap.set({'n', 'x', 'o'}, 'gj', '<Plug>(leap-from-window)')
+vim.keymap.set('n', 'j', '<Plug>(leap)')
+vim.keymap.set('n', 'J', '<Plug>(leap-from-window)')
+vim.keymap.set({ 'x', 'o' }, 'j', '<Plug>(leap-forward)')
+vim.keymap.set({ 'x', 'o' }, 'J', '<Plug>(leap-backward)')
+vim.keymap.set({ 'n', 'x', 'o' }, 'gj', '<Plug>(leap-from-window)')
