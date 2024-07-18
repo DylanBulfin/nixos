@@ -1,11 +1,6 @@
 vim.g.mapleader = " "
 
 function Colemak()
-  -- Bindings created by neovim-vscode extension for multi-cursor support
-  vim.keymap.del("x", "ma")
-  vim.keymap.del("x", "mi")
-  vim.keymap.del("x", "mA")
-  vim.keymap.del("x", "mI")
   vim.keymap.set({ "n", "v" }, "m", "h", { desc = "Left" })
   vim.keymap.set({ "n", "v", "o" }, "n", "j", { desc = "Down" })
   vim.keymap.set({ "n", "v", "o" }, "e", "k", { desc = "Up" })
@@ -51,12 +46,12 @@ end, {
 require("mini.ai").setup({
   mappings = {
     around = 'a',
-    inside = 'b',
+    inside = 'w', -- within
 
     around_next = 'an',
-    inside_next = 'bn',
+    inside_next = 'wn',
     around_last = 'al',
-    inside_last = 'bl',
+    inside_last = 'wl',
   },
 
   n_lines = 150,
@@ -92,11 +87,11 @@ require("nvim-treesitter.configs").setup({
       keymaps = {
         -- Select around/inside function/class
         ["af"] = { query = "@function.outer", desc = "Around function" },
-        ["bf"] = { query = "@function.inner", desc = "Inside function" },
+        ["wf"] = { query = "@function.inner", desc = "Inside function" },
         ["ac"] = { query = "@class.outer", desc = "Around class" },
-        ["bc"] = { query = "@class.inner", desc = "Inside class" },
+        ["wc"] = { query = "@class.inner", desc = "Inside class" },
         ["ab"] = { query = "@block.outer", desc = "Around block" },
-        ["bb"] = { query = "@block.inner", desc = "Inside block" },
+        ["wb"] = { query = "@block.inner", desc = "Inside block" },
       },
     },
     move = {
@@ -145,4 +140,5 @@ vim.keymap.set('n', 'j', '<Plug>(leap)')
 vim.keymap.set('n', 'J', '<Plug>(leap-from-window)')
 vim.keymap.set({ 'x', 'o' }, 'j', '<Plug>(leap-forward)')
 vim.keymap.set({ 'x', 'o' }, 'J', '<Plug>(leap-backward)')
-vim.keymap.set({ 'n', 'x', 'o' }, 'gj', '<Plug>(leap-from-window)')
+vim.keymap.set({ 'n', 'x', 'o' }, 'gJ', '<Plug>(leap-from-window)')
+

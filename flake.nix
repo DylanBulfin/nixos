@@ -10,8 +10,7 @@
   inputs.home-manager.url = "github:nix-community/home-manager/master";
   inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-  # inputs.page-rs.url = "github:DylanBulfin/page-rs";
-  inputs.page-rs.url = "/home/dylan/repos/rust/page-rs";
+  inputs.page-rs.url = "github:DylanBulfin/page-rs";
 
   outputs = inputs@{ nixpkgs, nixpkgs-stable, kmonad, home-manager, page-rs, ... }:
     let
@@ -21,7 +20,6 @@
           overlays = [ page-rs.overlays.default ];
         in
         nixpkgs.lib.nixosSystem {
-
           system = "x86_64-linux";
           specialArgs = { inherit device nixpkgs-stable inputs overlays; };
           modules = [
