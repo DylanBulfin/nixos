@@ -56,7 +56,20 @@ require("mini.ai").setup({
 
   n_lines = 150,
 })
-require("mini.surround").setup()
+-- vim.keymap.del({ "n", "x" }, "h")
+require("mini.surround").setup({
+  -- mnemonic: "hey i'm surroundin here"
+  add = 'ha',
+  delete = 'hd',
+  find = 'hf',
+  find_left = 'hF',
+  highlight = 'hh',
+  replace = 'hr',
+  update_n_lines = 'hn',
+
+  suffix_last = 'l',
+  suffix_next = 'n',
+})
 require("mini.move").setup(
   {
     mappings = {
@@ -136,9 +149,8 @@ vim.keymap.set({ "n", "x", "o" }, ",", rp.repeat_last_move_previous)
 require("flit").setup()
 
 -- leap (jump around screen)
-vim.keymap.set('n', 'j', '<Plug>(leap)')
-vim.keymap.set('n', 'J', '<Plug>(leap-from-window)')
-vim.keymap.set({ 'x', 'o' }, 'j', '<Plug>(leap-forward)')
-vim.keymap.set({ 'x', 'o' }, 'J', '<Plug>(leap-backward)')
-vim.keymap.set({ 'n', 'x', 'o' }, 'gJ', '<Plug>(leap-from-window)')
+vim.keymap.set({ "n", "x", "o" }, "ss", "<Cmd>HopWord<CR>")
+vim.keymap.set({ "n", "x", "o" }, "sc", "<Cmd>HopChar1<CR>")
+vim.keymap.set({ "n", "x", "o" }, "st", "<Cmd>HopChar2<CR>")
 
+require("hop").setup()

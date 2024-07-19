@@ -32,6 +32,7 @@ in {
       
       leap-nvim
       flit-nvim
+      hop-nvim
     ];
   };
 }
