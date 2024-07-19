@@ -56,16 +56,14 @@ require("mini.ai").setup({
 
   n_lines = 150,
 })
--- vim.keymap.del({ "n", "x" }, "h")
 require("mini.surround").setup({
-  -- mnemonic: "hey i'm surroundin here"
-  add = 'ha',
-  delete = 'hd',
-  find = 'hf',
-  find_left = 'hF',
-  highlight = 'hh',
-  replace = 'hr',
-  update_n_lines = 'hn',
+  add = 'sa',
+  delete = 'sd',
+  find = 'sf',
+  find_left = 'sF',
+  highlight = '',
+  replace = 'sr',
+  update_n_lines = '',
 
   suffix_last = 'l',
   suffix_next = 'n',
@@ -149,7 +147,7 @@ vim.keymap.set({ "n", "x", "o" }, ",", rp.repeat_last_move_previous)
 require("flit").setup()
 
 -- leap (jump around screen)
-vim.keymap.set({ "n", "x", "o" }, "ss", "<Cmd>HopWord<CR>")
+vim.keymap.set({ "n", "x", "o" }, "sn", "<Cmd>HopWord<CR>")
 vim.keymap.set({ "n", "x", "o" }, "sc", "<Cmd>HopChar1<CR>")
 vim.keymap.set({ "n", "x", "o" }, "st", "<Cmd>HopChar2<CR>")
 
