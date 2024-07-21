@@ -46,12 +46,12 @@ end, {
 require("mini.ai").setup({
   mappings = {
     around = 'a',
-    inside = 'w', -- within
+    inside = 'i', 
 
     around_next = 'an',
-    inside_next = 'wn',
+    inside_next = 'in',
     around_last = 'al',
-    inside_last = 'wl',
+    inside_last = 'il',
   },
 
   n_lines = 150,
@@ -98,11 +98,11 @@ require("nvim-treesitter.configs").setup({
       keymaps = {
         -- Select around/inside function/class
         ["af"] = { query = "@function.outer", desc = "Around function" },
-        ["wf"] = { query = "@function.inner", desc = "Inside function" },
+        ["if"] = { query = "@function.inner", desc = "Inside function" },
         ["ac"] = { query = "@class.outer", desc = "Around class" },
-        ["wc"] = { query = "@class.inner", desc = "Inside class" },
+        ["ic"] = { query = "@class.inner", desc = "Inside class" },
         ["ab"] = { query = "@block.outer", desc = "Around block" },
-        ["wb"] = { query = "@block.inner", desc = "Inside block" },
+        ["ib"] = { query = "@block.inner", desc = "Inside block" },
       },
     },
     move = {
@@ -146,9 +146,9 @@ vim.keymap.set({ "n", "x", "o" }, ",", rp.repeat_last_move_previous)
 -- flit (helix-style multi-line ftFT)
 require("flit").setup()
 
--- leap (jump around screen)
+-- hop (jump around screen)
+require("hop").setup()
 vim.keymap.set({ "n", "x", "o" }, "sn", "<Cmd>HopWord<CR>")
 vim.keymap.set({ "n", "x", "o" }, "sc", "<Cmd>HopChar1<CR>")
 vim.keymap.set({ "n", "x", "o" }, "st", "<Cmd>HopChar2<CR>")
 
-require("hop").setup()

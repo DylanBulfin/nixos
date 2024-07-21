@@ -40,6 +40,8 @@
         swaybg
 
         page-rs
+        
+        obsidian
 
         (vscode-with-extensions.override {
           vscodeExtensions = with vscode-extensions; [
@@ -52,6 +54,7 @@
             rust-lang.rust-analyzer
             vadimcn.vscode-lldb
             mechatroner.rainbow-csv
+            haskell.haskell
           ];
         })
       ]

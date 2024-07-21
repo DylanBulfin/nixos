@@ -43,10 +43,10 @@ if vim.g.vscode then
   vim.keymap.set("v", "ze", call("editor.unfold"))
 
   -- Bindings created by neovim-vscode extension for multi-cursor support
-  vim.keymap.del("x", "ma")
-  vim.keymap.del("x", "mi")
-  vim.keymap.del("x", "mA")
-  vim.keymap.del("x", "mI")
+  -- vim.keymap.del("x", "ma")
+  -- vim.keymap.del("x", "mi")
+  -- vim.keymap.del("x", "mA")
+  -- vim.keymap.del("x", "mI")
   Colemak()
 
   return
