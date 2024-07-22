@@ -14,6 +14,8 @@
   home.packages = with pkgs; [
   ];
 
+  programs.bash.enable = true;
+
   programs.foot.enable = true;
   programs.foot.settings = {
     main = {

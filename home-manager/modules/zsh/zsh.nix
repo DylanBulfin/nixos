@@ -119,6 +119,8 @@
     nrs = "sudo nixos-rebuild switch";
     nrsd = "sudo nixos-rebuild switch --dry-run";
     nrb = "sudo nixos-rebuild boot";
+
+    code = "(){cd $1; code . ;}";
   };
 
   programs.zoxide.enable = true;
@@ -153,4 +155,11 @@
 
   programs.fzf.enable = true;
   programs.fzf.enableZshIntegration = true;
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    enableBashIntegration = true;
+    nix-direnv.enable = true;
+  };
 }
