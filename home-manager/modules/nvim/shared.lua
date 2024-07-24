@@ -147,8 +147,13 @@ vim.keymap.set({ "n", "x", "o" }, ",", rp.repeat_last_move_previous)
 require("flit").setup()
 
 -- hop (jump around screen)
-require("hop").setup()
+require("hop").setup({
+  keys = "arsgmeiqwfpbluy;zxcdvkhtn"
+})
 vim.keymap.set({ "n", "x", "o" }, "sn", "<Cmd>HopWord<CR>")
 vim.keymap.set({ "n", "x", "o" }, "sc", "<Cmd>HopChar1<CR>")
 vim.keymap.set({ "n", "x", "o" }, "st", "<Cmd>HopChar2<CR>")
 
+-- Basic navigation remapping
+vim.keymap.set({"n", "v"}, "gi", "$")
+vim.keymap.set({"n", "v"}, "gm", "^")

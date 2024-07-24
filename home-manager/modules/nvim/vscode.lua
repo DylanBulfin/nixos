@@ -21,8 +21,8 @@ if vim.g.vscode then
   vim.keymap.set("n", "gg", call("cursorTop"))
   vim.keymap.set("v", "gg", call("cursorTop"))
 
-  vim.keymap.set("n", "gi", call("editor.action.goToImplementation"))
-  vim.keymap.set("v", "gi", call("editor.action.goToImplementation"))
+  vim.keymap.set("n", "gI", call("editor.action.goToImplementation"))
+  vim.keymap.set("v", "gI", call("editor.action.goToImplementation"))
 
   vim.keymap.set("n", "gr", call("editor.action.goToReferences"))
   vim.keymap.set("v", "gr", call("editor.action.goToReferences"))

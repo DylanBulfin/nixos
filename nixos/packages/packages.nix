@@ -9,7 +9,6 @@
         vim
         wl-clipboard
         git
-        python3
         xfce.thunar
         pavucontrol
         discord
@@ -29,6 +28,11 @@
         nil
         nixd
 
+        # Python
+        (python3.withPackages (python-pkgs: [
+          python-pkgs.requests
+        ]))
+
         # Lua
         lua-language-server
 
@@ -40,7 +44,7 @@
         swaybg
 
         page-rs
-        
+
         obsidian
 
         (vscode-with-extensions.override {
@@ -55,6 +59,11 @@
             vadimcn.vscode-lldb
             mechatroner.rainbow-csv
             haskell.haskell
+            justusadam.language-haskell
+            ms-python.python
+            ms-python.vscode-pylance
+            ms-python.debugpy
+            tamasfe.even-better-toml
           ];
         })
       ]

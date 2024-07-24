@@ -119,8 +119,6 @@
     nrs = "sudo nixos-rebuild switch";
     nrsd = "sudo nixos-rebuild switch --dry-run";
     nrb = "sudo nixos-rebuild boot";
-
-    code = "(){cd $1; code . ;}";
   };
 
   programs.zoxide.enable = true;
@@ -130,6 +128,14 @@
     [[ ! -f /home/dylan/.p10k.zsh ]] || source /home/dylan/.p10k.zsh
     
     bindkey 'key[Up]' history-substring-search-up
+    
+    code () {
+      local prev_dir=$PWD
+      if cd $1 ; then
+        command code .
+      fi
+      cd $prev_dir
+    }
   '';
 
   programs.zsh.initExtraBeforeCompInit = ''
