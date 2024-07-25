@@ -44,7 +44,7 @@
         antidote
         swaybg
 
-        rg
+        ripgrep
         bat-extras.batman
         bat-extras.batgrep
 
