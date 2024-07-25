@@ -121,6 +121,7 @@
     nrb = "sudo nixos-rebuild boot";
     
     man = "batman";
+    rg = "batgrep";
   };
 
   programs.zoxide.enable = true;

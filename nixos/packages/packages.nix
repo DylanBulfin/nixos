@@ -44,7 +44,9 @@
         antidote
         swaybg
 
+        rg
         bat-extras.batman
+        bat-extras.batgrep
 
         obsidian
 
