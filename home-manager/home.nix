@@ -23,7 +23,7 @@
     };
   };
   
-  programs.page-rs.enable = true;
+  programs.bat.enable = true;
   
   programs.broot.enable = true;
   

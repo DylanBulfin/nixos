@@ -69,6 +69,8 @@
     WORDCHARS = "*?_-.[]~=&;!#$%^(){}<>";
     # What characters are removed after tab-completion in zsh
     ZLE_REMOVE_SUFFIX_CHARS = ";\n\C-M\t";
+    
+    PAGER = "bat";
   };
 
   users.defaultUserShell = pkgs.zsh;

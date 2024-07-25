@@ -29,8 +29,9 @@
         nixd
 
         # Python
-        (python3.withPackages (python-pkgs: [
-          python-pkgs.requests
+        (python3.withPackages (python-pkgs: with python-pkgs;[
+          requests
+          pygments
         ]))
 
         # Lua
@@ -43,7 +44,8 @@
         antidote
         swaybg
 
-        page-rs
+        page-rs 
+        bat-extras.batman
 
         obsidian
 

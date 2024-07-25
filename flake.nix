@@ -10,8 +10,6 @@
   inputs.home-manager.url = "github:nix-community/home-manager/master";
   inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-  inputs.page-rs.url = "github:DylanBulfin/page-rs";
-
   outputs = inputs@{ nixpkgs, nixpkgs-stable, kmonad, home-manager, page-rs, ... }:
     let
       mkDeviceConfig = dev:
@@ -34,7 +32,7 @@
                 useUserPackages = true;
                 users.dylan = import ./home-manager/home.nix;
                 extraSpecialArgs = { inherit device; };
-                sharedModules = [ page-rs.nixosModules.default ];
+                sharedModules = [ ];
               };
             }
           ];

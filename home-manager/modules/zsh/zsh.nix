@@ -119,6 +119,8 @@
     nrs = "sudo nixos-rebuild switch";
     nrsd = "sudo nixos-rebuild switch --dry-run";
     nrb = "sudo nixos-rebuild boot";
+    
+    man = "batman";
   };
 
   programs.zoxide.enable = true;
