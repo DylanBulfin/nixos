@@ -44,7 +44,6 @@
         antidote
         swaybg
 
-        page-rs 
         bat-extras.batman
 
         obsidian

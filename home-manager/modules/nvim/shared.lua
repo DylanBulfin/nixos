@@ -150,9 +150,8 @@ require("flit").setup()
 require("hop").setup({
   keys = "arsgmeiqwfpbluy;zxcdvkhtn"
 })
-vim.keymap.set({ "n", "x", "o" }, "sn", "<Cmd>HopWord<CR>")
-vim.keymap.set({ "n", "x", "o" }, "sc", "<Cmd>HopChar1<CR>")
-vim.keymap.set({ "n", "x", "o" }, "st", "<Cmd>HopChar2<CR>")
+vim.keymap.set({ "n", "x", "o" }, "s", "<Cmd>HopWord<CR>")
+vim.keymap.set({ "n", "x", "o" }, "S", "<Cmd>HopChar2<CR>")
 
 -- Basic navigation remapping
 vim.keymap.set({"n", "v"}, "gi", "$")

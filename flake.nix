@@ -10,12 +10,12 @@
   inputs.home-manager.url = "github:nix-community/home-manager/master";
   inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-  outputs = inputs@{ nixpkgs, nixpkgs-stable, kmonad, home-manager, page-rs, ... }:
+  outputs = inputs@{ nixpkgs, nixpkgs-stable, kmonad, home-manager, ... }:
     let
       mkDeviceConfig = dev:
         let
           device = "${dev}";
-          overlays = [ page-rs.overlays.default ];
+          overlays = [ ];
         in
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
