@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 
 {
   services.openssh.enable = true;
@@ -17,9 +17,12 @@
     xkb.layout = "us";
   };
 
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
 
-  services.xserver.displayManager.gdm.enable = true;
+    displayManager.gdm.enable = true;
+    # desktopManager.gnome.enable = true;
+  };
 
   services.gvfs.enable = true;
 }

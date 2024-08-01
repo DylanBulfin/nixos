@@ -9,6 +9,8 @@
   programs.sway.enable = true;
 
   programs.light.enable = true;
+  
+  programs.thefuck.enable = true;
 
   programs.less = {
     enable = true;

@@ -18,9 +18,13 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.consoleMode = "0";
+  boot.loader.systemd-boot = {
+    enable = true;
+    consoleMode = "0";
+    configurationLimit = 5;
+  };
   boot.loader.efi.canTouchEfiVariables = true;
+
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Added as part of nixd install instructions
@@ -28,16 +32,17 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [
-    (final: prev: {
-      stable = import nixpkgs-stable {
-        system = prev.system;
-        config.allowUnfree = true;
-      };
-    })
+    # (final: prev: {
+    #   stable = import nixpkgs-stable {
+    #     system = prev.system;
+    #     config.allowUnfree = true;
+    #   };
+    # })
   ] ++ overlays;
 
   hardware.keyboard.qmk.enable = true;
   hardware.pulseaudio.enable = false;
+  hardware.graphics.enable = true;
 
   security.rtkit.enable = true;
   security.polkit.enable = true;
@@ -69,7 +74,7 @@
     WORDCHARS = "*?_-.[]~=&;!#$%^(){}<>";
     # What characters are removed after tab-completion in zsh
     ZLE_REMOVE_SUFFIX_CHARS = ";\n\C-M\t";
-    
+
     PAGER = "bat";
   };
 
