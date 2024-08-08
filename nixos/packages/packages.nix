@@ -34,6 +34,10 @@
           pygments
         ]))
 
+        # Haskell
+        (haskellPackages.ghcWithPackages
+          (pkgs: with pkgs; [ cabal-install ]))
+
         # Lua
         lua-language-server
 

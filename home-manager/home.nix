@@ -22,11 +22,11 @@
       font = "Noto Sans Mono:size=11";
     };
   };
-  
+
   programs.bat.enable = true;
-  
+
   programs.broot.enable = true;
-  
+
   services.wlsunset.enable = true;
   services.wlsunset.sunset = "19:00";
   services.wlsunset.sunrise = "09:00";
