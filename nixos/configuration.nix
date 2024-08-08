@@ -47,6 +47,11 @@
   security.rtkit.enable = true;
   security.polkit.enable = true;
 
+  security.sudo = {
+    enable = true;
+    extraConfig = "Defaults pwfeedback";
+  };
+
   networking.hostName = "dylan-${device}";
   networking.networkmanager.enable = true;
 
