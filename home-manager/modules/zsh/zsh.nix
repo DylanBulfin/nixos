@@ -122,6 +122,9 @@
     
     man = "batman";
     rg = "batgrep";
+    
+    code = "codefunc";
+    c = "codefunc";
   };
 
   programs.zoxide.enable = true;
@@ -132,7 +135,7 @@
     
     bindkey 'key[Up]' history-substring-search-up
     
-    code () {
+    codefunc () {
       local prev_dir=$PWD
       if cd $1 ; then
         command code .
