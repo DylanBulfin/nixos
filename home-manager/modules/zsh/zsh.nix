@@ -114,34 +114,62 @@
     gcl = "git clone";
 
     srn = "sudo reboot now";
+    srun = "fullupdate";
+    yay = "fullupdate";
     ssn = "sudo shutdown now";
 
     nrs = "sudo nixos-rebuild switch";
     nrsd = "sudo nixos-rebuild switch --dry-run";
     nrb = "sudo nixos-rebuild boot";
-    
+
     man = "batman";
     rg = "batgrep";
-    
+
     code = "codefunc";
     c = "codefunc";
+    "c." = "codefunc .";
+    cn = "codefunc /etc/nixos";
   };
 
   programs.zoxide.enable = true;
   programs.zoxide.enableZshIntegration = true;
 
   programs.zsh.initExtra = ''
-    [[ ! -f /home/dylan/.p10k.zsh ]] || source /home/dylan/.p10k.zsh
+        [[ ! -f /home/dylan/.p10k.zsh ]] || source /home/dylan/.p10k.zsh
     
-    bindkey 'key[Up]' history-substring-search-up
+        bindkey 'key[Up]' history-substring-search-up
+
+        auto-ls-cond () {
+          if $enable_autols; then
+            auto-ls-ls
+            auto-ls-git-status
+          fi
+        }
+        
+        enable_autols=true
+
+        AUTO_LS_COMMANDS=(cond) 
+
+        codefunc () {
+          enable_autols=false
+          local prev_dir=$PWD
+          if cd $1 ; then
+            command code .
+          fi
+          cd $prev_dir
+          enable_autols=true
+        }
     
-    codefunc () {
-      local prev_dir=$PWD
-      if cd $1 ; then
-        command code .
-      fi
-      cd $prev_dir
-    }
+        fullupdate () {
+          enable_autols=false
+          local prev_dir=$PWD
+          cd /etc/nixos
+          sudo -v 
+          nix flake update
+          sudo nixos-rebuild switch
+          cd $prev_dir
+          enable_autols=true
+        }
   '';
 
   programs.zsh.initExtraBeforeCompInit = ''
