@@ -112,6 +112,10 @@
     gl = "git log";
     gf = "git fetch";
     gcl = "git clone";
+    
+    cr = "cargo run";
+    ct = "cargo test";
+    ca = "cargo add";
 
     srn = "sudo reboot now";
     srun = "fullupdate";
@@ -135,41 +139,10 @@
   programs.zoxide.enableZshIntegration = true;
 
   programs.zsh.initExtra = ''
-        [[ ! -f /home/dylan/.p10k.zsh ]] || source /home/dylan/.p10k.zsh
+    [[ ! -f /home/dylan/.p10k.zsh ]] || source /home/dylan/.p10k.zsh
     
-        bindkey 'key[Up]' history-substring-search-up
+    bindkey 'key[Up]' history-substring-search-up
 
-        auto-ls-cond () {
-          if $enable_autols; then
-            auto-ls-ls
-            auto-ls-git-status
-          fi
-        }
-        
-        enable_autols=true
-
-        AUTO_LS_COMMANDS=(cond) 
-
-        codefunc () {
-          enable_autols=false
-          local prev_dir=$PWD
-          if cd $1 ; then
-            command code .
-          fi
-          cd $prev_dir
-          enable_autols=true
-        }
-    
-        fullupdate () {
-          enable_autols=false
-          local prev_dir=$PWD
-          cd /etc/nixos
-          sudo -v 
-          nix flake update
-          sudo nixos-rebuild switch
-          cd $prev_dir
-          enable_autols=true
-        }
   '';
 
   programs.zsh.initExtraBeforeCompInit = ''
@@ -190,6 +163,38 @@
       bindkey '^[[1;5C' vi-forward-word
       bindkey -M vicmd '^[[1;5D' vi-backward-word
       bindkey -M vicmd '^[[1;5C' vi-forward-word
+
+      auto-ls-cond () {
+        if $enable_autols; then
+          auto-ls-ls
+          auto-ls-git-status
+        fi
+      }
+      
+      enable_autols=true
+
+      AUTO_LS_COMMANDS=(cond) 
+
+      codefunc () {
+        enable_autols=false
+        local prev_dir=$PWD
+        if cd $1 ; then
+          command code .
+        fi
+        cd $prev_dir
+        enable_autols=true
+      }
+  
+      fullupdate () {
+        enable_autols=false
+        local prev_dir=$PWD
+        cd /etc/nixos
+        sudo -v 
+        nix flake update
+        sudo nixos-rebuild switch
+        cd $prev_dir
+        enable_autols=true
+      }
     }
   '';
 

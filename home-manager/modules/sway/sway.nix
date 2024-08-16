@@ -183,6 +183,7 @@
           "${modifier}+o" = "exec firefox";
           "${modifier}+t" = "exec discord";
           "${modifier}+Shift+s" = "exec grimshot copy area";
+          "${modifier}+s" = "exec grimshot save area";
           "${modifier}+q" = "kill";
           "${modifier}+p" = "exec obsidian";
           "XF86AudioRaiseVolume" = "exec 'pactl set-sink-volume @DEFAULT_SINK@ +5%'";

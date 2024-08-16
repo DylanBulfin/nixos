@@ -13,6 +13,9 @@
         pavucontrol
         discord
         htop
+        fd
+        feh
+        vlc
 
         # rust
         rustc
