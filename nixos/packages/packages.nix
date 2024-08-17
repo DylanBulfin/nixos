@@ -16,6 +16,9 @@
         fd
         feh
         vlc
+        
+        # node
+        nodejs
 
         # rust
         rustc
@@ -30,6 +33,7 @@
         # nix
         nil
         nixd
+        nixfmt
 
         # Python
         (python3.withPackages (python-pkgs: with python-pkgs;[

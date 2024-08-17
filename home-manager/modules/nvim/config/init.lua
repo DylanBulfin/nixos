@@ -42,4 +42,12 @@ end, {
   desc = "Set keybindings to Qwerty",
 })
 
+
+-- Basic navigation remapping
+vim.keymap.set({ "n", "v" }, "gi", "$")
+vim.keymap.set({ "n", "v" }, "gm", "^")
+
+
+
+
 Colemak()

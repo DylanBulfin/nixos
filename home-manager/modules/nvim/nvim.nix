@@ -48,6 +48,7 @@ in
       }
 
       plenary-nvim
+      nvim-web-devicons
       telescope-fzf-native-nvim
       telescope-ui-select-nvim
       telescope-lsp-handlers-nvim
@@ -68,6 +69,30 @@ in
         plugin = hop-nvim;
         type = "lua";
         config = builtins.readFile ./config/hop.lua;
+      }
+
+      {
+        plugin = conform-nvim;
+        type = "lua";
+        config = builtins.readFile ./config/conform.lua;
+      }
+
+      {
+        plugin = copilot-lua;
+        type = "lua";
+        config = builtins.readFile ./config/copilot.lua;
+      }
+
+      {
+        plugin = auto-save-nvim;
+        type = "lua";
+        config = builtins.readFile ./config/auto-save.lua;
+      }
+      
+      {
+        plugin = barbar-nvim;
+        type = "lua";
+        config = builtins.readFile ./config/barbar.lua;
       }
     ];
   };
