@@ -39,6 +39,10 @@ lspconfig.rust_analyzer.setup({
 	capabilities = capabilities,
 })
 
+vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, { desc = "Float diagnostics" })
+vim.keymap.set("n", "<leader>xN", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
+vim.keymap.set("n", "<leader>xn", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+
 local group = vim.api.nvim_create_augroup("UserLspConfig", {})
 
 -- Use LspAttach autocommand to only map the following keys
