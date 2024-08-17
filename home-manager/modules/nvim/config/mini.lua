@@ -2,7 +2,7 @@
 require("mini.ai").setup({
   mappings = {
     around = 'a',
-    inside = 'i', 
+    inside = 'i',
 
     around_next = 'an',
     inside_next = 'in',
@@ -39,6 +39,12 @@ require("mini.move").setup(
       line_down = '<C-Down>',
       line_up = '<C-Up>',
     },
-
   }
 )
+
+if not vim.g.vscode then
+  require("mini.sessions").setup({
+    file = '',
+    autoread = true,
+  })
+end

@@ -7,6 +7,8 @@ let
       end
     ''
   ;
+  readNoCode = path:
+    configNoCode (builtins.readFile path);
 in
 {
   programs.neovim = {
@@ -18,7 +20,7 @@ in
         plugin =
           nvim-lspconfig;
         type = "lua";
-        config = configNoCode (builtins.readFile ./config/lsp.lua);
+        config = readNoCode ./config/lsp.lua;
       }
       {
         plugin = catppuccin-nvim;
@@ -55,7 +57,7 @@ in
       {
         plugin = telescope-nvim;
         type = "lua";
-        config = configNoCode (builtins.readFile ./config/telescope.lua);
+        config = readNoCode ./config/telescope.lua;
       }
 
       leap-nvim
@@ -74,25 +76,37 @@ in
       {
         plugin = conform-nvim;
         type = "lua";
-        config = builtins.readFile ./config/conform.lua;
+        config = readNoCode ./config/conform.lua;
       }
 
       {
         plugin = copilot-lua;
         type = "lua";
-        config = builtins.readFile ./config/copilot.lua;
+        config = readNoCode ./config/copilot.lua;
       }
 
       {
         plugin = auto-save-nvim;
         type = "lua";
-        config = builtins.readFile ./config/auto-save.lua;
+        config = readNoCode ./config/auto-save.lua;
       }
-      
+
       {
         plugin = barbar-nvim;
         type = "lua";
-        config = builtins.readFile ./config/barbar.lua;
+        config = readNoCode ./config/barbar.lua;
+      }
+
+      {
+        plugin = statuscol-nvim;
+        type = "lua";
+        config = readNoCode ./config/statuscol.lua;
+      }
+
+      {
+        plugin = gitsigns-nvim;
+        type = "lua";
+        config = configNoCode ''require("gitsigns").setup()'';
       }
     ];
   };
