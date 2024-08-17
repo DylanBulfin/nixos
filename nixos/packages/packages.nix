@@ -33,7 +33,7 @@
         # nix
         nil
         nixd
-        nixfmt
+        nixfmt-classic
 
         # Python
         (python3.withPackages (python-pkgs: with python-pkgs;[

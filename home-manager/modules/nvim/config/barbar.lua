@@ -1,8 +1,8 @@
 vim.g.barbar_auto_setup = false
 
 require("barbar").setup({
-    hide = { extensions = false },
-    letters = "arstneiocdhxzgmvkbjplfuwyq;ARSTNEIOCDHXZGMVKBJPLFUWYQ"
+  hide = { extensions = false },
+  letters = "arstneiocdhxzgmvkbjplfuwyq;ARSTNEIOCDHXZGMVKBJPLFUWYQ"
 })
 
 -- Move to previous/next

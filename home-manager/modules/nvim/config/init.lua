@@ -47,7 +47,29 @@ end, {
 vim.keymap.set({ "n", "v" }, "gi", "$")
 vim.keymap.set({ "n", "v" }, "gm", "^")
 
+if not vim.g.vscode then
+  -- Neovim-specific options
+  vim.o.number = true
+  vim.o.relativenumber = true
+  vim.o.expandtab = true
+  vim.o.cursorline = true
+  vim.o.confirm = true
+  vim.o.tabstop = 2
+  vim.o.shiftwidth = 2
+  vim.o.smartcase = true
+  vim.o.smartindent = true
+  vim.o.wrap = true
+  vim.o.signcolumn = "no"
+  vim.o.showmode = false
+  vim.o.background = "dark"
+  vim.o.listchars =
+  "space:⋅,tab:▎_,trail:•,extends:❯,precedes:❮,nbsp:"
 
+  -- Neovim-specific bindings
+  vim.keymap.set("n", "<leader>qq", "<Cmd>qa<CR>", { desc = "Exit Neovim" })
+  vim.keymap.set("n", "<leader>qQ", "<Cmd>qa!<CR>", { desc = "Exit Neovim with a bang" })
 
+  vim.keymap.set("n", "<leader>bs", function() vim.cmd.write() end, { desc = "Save buffer" })
+end
 
 Colemak()
