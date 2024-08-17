@@ -47,6 +47,7 @@
 
         # Lua
         lua-language-server
+        stylua
 
         # For sway
         mako

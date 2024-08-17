@@ -4,7 +4,8 @@
   inputs.nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-  inputs.kmonad.url = "git+https://github.com/kmonad/kmonad?submodules=1&dir=nix";
+  inputs.kmonad.url =
+    "git+https://github.com/kmonad/kmonad?submodules=1&dir=nix";
   inputs.kmonad.inputs.nixpkgs.follows = "nixpkgs";
 
   inputs.home-manager.url = "github:nix-community/home-manager/master";
@@ -16,8 +17,7 @@
         let
           device = "${dev}";
           overlays = [ ];
-        in
-        nixpkgs.lib.nixosSystem {
+        in nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit device nixpkgs-stable inputs overlays; };
           modules = [
@@ -37,15 +37,11 @@
             }
           ];
         };
-    in
-    {
-      nixosConfigurations.nixos =
-        nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./bootstrap-configuration.nix
-          ];
-        };
+    in {
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [ ./bootstrap-configuration.nix ];
+      };
       nixosConfigurations.dylan-desktop = mkDeviceConfig "desktop";
       nixosConfigurations.dylan-laptop = mkDeviceConfig "laptop";
     };

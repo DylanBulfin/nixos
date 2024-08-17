@@ -1,31 +1,27 @@
 { pkgs, ... }:
 let
-  configNoCode = cfg:
-    ''
-      if not vim.g.vscode then
-        ${cfg}
-      end
-    ''
-  ;
-  readNoCode = path:
-    configNoCode (builtins.readFile path);
-in
-{
+  configNoCode = cfg: ''
+    if not vim.g.vscode then
+      ${cfg}
+    end
+  '';
+  readNoCode = path: configNoCode (builtins.readFile path);
+in {
   programs.neovim = {
     enable = true;
 
     extraLuaConfig = builtins.readFile ./config/init.lua;
+    extraLuaPackages = luaPkgs: with luaPkgs; [ jsregexp ];
     plugins = with pkgs.vimPlugins; [
       {
-        plugin =
-          nvim-lspconfig;
+        plugin = nvim-lspconfig;
         type = "lua";
         config = readNoCode ./config/lsp.lua;
       }
       {
         plugin = catppuccin-nvim;
         type = "lua";
-        config = configNoCode ''vim.cmd.colorscheme "catppuccin"'';
+        config = readNoCode ./config/catppuccin.lua;
       }
 
       nvim-treesitter-textsubjects
@@ -64,8 +60,7 @@ in
       {
         plugin = flit-nvim;
         type = "lua";
-        config =
-          ''require("flit").setup()'';
+        config = ''require("flit").setup()'';
       }
       {
         plugin = hop-nvim;
@@ -107,6 +102,49 @@ in
         plugin = gitsigns-nvim;
         type = "lua";
         config = configNoCode ''require("gitsigns").setup()'';
+      }
+
+      # lazydev-nvim
+
+      cmp-nvim-lsp
+      luasnip
+      cmp_luasnip
+      {
+        plugin = nvim-cmp;
+        type = "lua";
+        config = readNoCode ./config/cmp.lua;
+      }
+
+      promise-async
+      {
+        plugin = nvim-ufo;
+        type = "lua";
+        config = readNoCode ./config/ufo.lua;
+      }
+
+      {
+        plugin = lualine-nvim;
+        type = "lua";
+        config = readNoCode ./config/lualine.lua;
+      }
+
+      {
+        plugin = nvim-autopairs;
+        type = "lua";
+        config = readNoCode ./config/autopairs.lua;
+      }
+
+      {
+        plugin = which-key-nvim;
+        type = "lua";
+        config = readNoCode ./config/which-key.lua;
+      }
+
+      nui-nvim
+      {
+        plugin = neo-tree-nvim;
+        type = "lua";
+        config = readNoCode ./config/neo-tree.lua;
       }
     ];
   };
