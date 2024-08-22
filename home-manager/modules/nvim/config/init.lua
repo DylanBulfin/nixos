@@ -71,20 +71,20 @@ if not vim.g.vscode then
 		vim.cmd.write()
 	end, { desc = "Save buffer" })
 
-	vim.keymap.set("i", "<C-BS>", "<C-w>", { desc = "Delete word back" })
+	vim.keymap.set({ "i", "c" }, "<C-BS>", "<C-w>", { desc = "Delete word back" })
 
 	vim.keymap.set("n", "<C-w>a", "<C-w>t<C-w>o", { desc = "Close all but top left window" })
-  vim.keymap.set("n", "<C-w>m", "<C-w>h", { desc = "Move to left window" })
-  vim.keymap.set("n", "<C-w>i", "<C-w>l", { desc = "Move to right window" })
-  vim.keymap.set("n", "<C-w>n", "<C-w>j", { desc = "Move to lower window" })
-  vim.keymap.set("n", "<C-w>e", "<C-w>k", { desc = "Move to upper window" })
+	vim.keymap.set("n", "<C-w>m", "<C-w>h", { desc = "Move to left window" })
+	vim.keymap.set("n", "<C-w>i", "<C-w>l", { desc = "Move to right window" })
+	vim.keymap.set("n", "<C-w>n", "<C-w>j", { desc = "Move to lower window" })
+	vim.keymap.set("n", "<C-w>e", "<C-w>k", { desc = "Move to upper window" })
 
 	vim.keymap.set("n", "<leader>w", "<C-w>", { remap = true })
 	vim.keymap.set("n", "<leader>p", '"+p', { remap = true })
 	vim.keymap.set("n", "<leader>P", '"+P', { remap = true })
 	vim.keymap.set("n", "<leader>y", '"+y', { remap = true })
 
-	vim.keymap.set("i", "<C-i>", function()
+	vim.keymap.set({ "i", "n", "v" }, "<C-i>", function()
 		vim.cmd.normal("zz")
 	end, { desc = "Center current line" })
 end

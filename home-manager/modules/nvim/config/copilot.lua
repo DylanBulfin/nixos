@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 				debouce = 100,
 				keymap = {
 					accept = "<C-f>",
-					accept_word = "<C-w>",
+					-- accept_word = "<C-w>",
 					next = "<C-n>",
 					prev = "<C-p>",
 				},

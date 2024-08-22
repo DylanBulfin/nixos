@@ -45,6 +45,13 @@ if not vim.g.vscode then
 		directory = "",
 		file = ".session",
 		autoread = true,
+		hooks = {
+			pre = {
+				write = function()
+					vim.cmd("<Cmd>Neotree close<CR>")
+				end,
+			},
+		},
 	})
 
 	require("mini.notify").setup()

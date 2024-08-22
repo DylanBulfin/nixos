@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   home.file.".p10k.zsh".source = ./.p10k.zsh;
   programs.zsh.enable = true;
   programs.zsh.enableCompletion = false;
@@ -112,7 +111,7 @@
     gl = "git log";
     gf = "git fetch";
     gcl = "git clone";
-    
+
     cr = "cargo run";
     ct = "cargo test";
     ca = "cargo add";
@@ -140,7 +139,7 @@
 
   programs.zsh.initExtra = ''
     [[ ! -f /home/dylan/.p10k.zsh ]] || source /home/dylan/.p10k.zsh
-    
+
     bindkey 'key[Up]' history-substring-search-up
 
   '';
@@ -184,7 +183,7 @@
         cd $prev_dir
         enable_autols=true
       }
-  
+
       fullupdate () {
         enable_autols=false
         local prev_dir=$PWD

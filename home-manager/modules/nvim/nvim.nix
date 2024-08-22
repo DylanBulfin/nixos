@@ -104,8 +104,6 @@ in {
         config = configNoCode ''require("gitsigns").setup()'';
       }
 
-      # lazydev-nvim
-
       cmp-nvim-lsp
       luasnip
       cmp_luasnip
@@ -145,6 +143,22 @@ in {
         plugin = neo-tree-nvim;
         type = "lua";
         config = readNoCode ./config/neo-tree.lua;
+      }
+
+      # {
+      #   plugin = pkgs.vimPlugins.sqlite-lua;
+      #   type = "lua";
+      #   config =
+      #     "vim.g.sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'";
+      # }
+      
+      rustaceanvim
+      FixCursorHold-nvim
+      nvim-nio
+      {
+        plugin = neotest;
+        type = "lua";
+        config = readNoCode ./config/neotest.lua;
       }
     ];
   };
