@@ -56,6 +56,7 @@ if not vim.g.vscode then
 	vim.o.tabstop = 2
 	vim.o.shiftwidth = 2
 	vim.o.smartcase = true
+	vim.o.ignorecase = true
 	vim.o.smartindent = true
 	vim.o.wrap = true
 	vim.o.signcolumn = "no"
@@ -87,6 +88,16 @@ if not vim.g.vscode then
 	vim.keymap.set({ "i", "n", "v" }, "<C-i>", function()
 		vim.cmd.normal("zz")
 	end, { desc = "Center current line" })
+
+  -- Automatically moves help window to lower left, allowing me to use the <C-w>a binding safely
+	local group = vim.api.nvim_create_augroup("WinMgmt", {})
+	vim.api.nvim_create_autocmd("FileType", {
+		group = group,
+		pattern = "help",
+		callback = function()
+			vim.cmd.wincmd("L")
+		end,
+	})
 end
 
 Colemak()

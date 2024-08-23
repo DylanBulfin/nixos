@@ -1,4 +1,5 @@
 { pkgs, ... }:
+with pkgs.vimPlugins;
 let
   configNoCode = cfg: ''
     if not vim.g.vscode then
@@ -12,7 +13,7 @@ in {
 
     extraLuaConfig = builtins.readFile ./config/init.lua;
     extraLuaPackages = luaPkgs: with luaPkgs; [ jsregexp ];
-    plugins = with pkgs.vimPlugins; [
+    plugins = [
       {
         plugin = nvim-lspconfig;
         type = "lua";
@@ -151,10 +152,19 @@ in {
       #   config =
       #     "vim.g.sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'";
       # }
-      
-      rustaceanvim
+
       FixCursorHold-nvim
       nvim-nio
+      {
+        plugin = rustaceanvim;
+        type = "lua";
+        config = readNoCode ./config/rust.lua;
+      }
+      {
+        plugin = neotest;
+        type = "lua";
+        config = readNoCode ./config/neotest.lua;
+      }
       {
         plugin = neotest;
         type = "lua";

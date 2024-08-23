@@ -132,6 +132,11 @@
     c = "codefunc";
     "c." = "codefunc .";
     cn = "codefunc /etc/nixos";
+
+    nvim = "nvimfunc";
+    n = "nvimfunc";
+    "n." = "nvimfunc";
+    nn = "nvimfunc /etc/nixos";
   };
 
   programs.zoxide.enable = true;
@@ -179,7 +184,20 @@
         local prev_dir=$PWD
         if cd $1 ; then
           command code .
+        else
+          command code
         fi
+        cd $prev_dir
+        enable_autols=true
+      }
+
+      nvimfunc () {
+        enable_autols=false
+        local prev_dir=$PWD
+        if [ "$#" -eq "1" ]; then
+          cd $1
+        fi
+        command nvim
         cd $prev_dir
         enable_autols=true
       }

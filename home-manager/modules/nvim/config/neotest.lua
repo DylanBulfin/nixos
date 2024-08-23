@@ -1,11 +1,13 @@
 require("neotest").setup({
-    adapters = {
-        require('rustaceanvim.neotest')
-    },
+	adapters = {
+		require("rustaceanvim.neotest"),
+	},
 })
 
 vim.keymap.set("n", "<leader>tt", function()
-    local nt = require("neotest")
-    nt.run.run()
-    nt.output.focus()
-end)
+	require("neotest").run.run()
+end, { desc = "Run tests" })
+
+vim.keymap.set("n", "<leader>tp", function()
+	require("neotest").output_panel.toggle()
+end, { desc = "Toggle test output panel" })

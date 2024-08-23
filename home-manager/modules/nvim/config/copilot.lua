@@ -24,10 +24,25 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 				},
 			},
 		})
+		vim.g.copilot_init = true
+		vim.cmd("Copilot disable")
 	end,
 })
 
-vim.keymap.set("n", "<leader>cs", "<Cmd>Copilot status<CR>", { desc = "Copilot status" })
-vim.keymap.set("n", "<leader>ce", "<Cmd>Copilot enable<CR>", { desc = "Copilot enable" })
-vim.keymap.set("n", "<leader>cd", "<Cmd>Copilot disable<CR>", { desc = "Copilot disable" })
+vim.g.copilot_status = false
 
+vim.keymap.set("n", "<leader>cs", "<Cmd>Copilot status<CR>", { desc = "Copilot status" })
+vim.keymap.set("n", "<leader>ce", function()
+	if not vim.g.copilot_init then
+		return
+	end
+	vim.g.copilot_status = true
+	vim.cmd("Copilot enable")
+end, { desc = "Copilot enable" })
+vim.keymap.set("n", "<leader>cd", function()
+	if not vim.g.copilot_init then
+		return
+	end
+	vim.g.copilot_status = false
+	vim.cmd("Copilot disable")
+end, { desc = "Copilot disable" })
