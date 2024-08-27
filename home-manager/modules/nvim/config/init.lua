@@ -85,11 +85,13 @@ if not vim.g.vscode then
 	vim.keymap.set("n", "<leader>P", '"+P', { remap = true })
 	vim.keymap.set("n", "<leader>y", '"+y', { remap = true })
 
+	vim.keymap.set("n", "<leader>a", "gg^vG$", { desc = "Select entire buffer" })
+
 	vim.keymap.set({ "i", "n", "v" }, "<C-i>", function()
 		vim.cmd.normal("zz")
 	end, { desc = "Center current line" })
 
-  -- Automatically moves help window to lower left, allowing me to use the <C-w>a binding safely
+	-- Automatically moves help window to lower left, allowing me to use the <C-w>a binding safely
 	local group = vim.api.nvim_create_augroup("WinMgmt", {})
 	vim.api.nvim_create_autocmd("FileType", {
 		group = group,

@@ -16,6 +16,7 @@
         fd
         feh
         vlc
+        sqlite
         
         # node
         nodejs

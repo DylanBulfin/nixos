@@ -1,10 +1,14 @@
-local actions = require "telescope.actions"
 require("telescope").setup({
-  pickers = {
-    find_files = {
-      theme = "dropdown",
-    },
-  },
+	pickers = {
+		find_files = {
+			theme = "dropdown",
+		},
+	},
+	extensions = {
+		smart_open = {
+			match_algorithm = "fzf",
+		},
+	},
 })
 -- Base telescope picker keymaps
 local builtin = require("telescope.builtin")

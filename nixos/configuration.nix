@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, device, inputs, overlays, ... }:
+{ pkgs, device, inputs, overlays, nixpkgs-stable, nixpkgs-extra_unstable, ... }:
 
 {
   imports =
@@ -32,12 +32,19 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [
-    # (final: prev: {
-    #   stable = import nixpkgs-stable {
-    #     system = prev.system;
-    #     config.allowUnfree = true;
-    #   };
-    # })
+    (final: prev: {
+      stable = import nixpkgs-stable {
+        system = prev.system;
+        config.allowUnfree = true;
+      };
+    })
+
+    (final: prev: {
+      extra_unstable = import nixpkgs-extra_unstable {
+        system = prev.system;
+        config.allowUnfree = true;
+      };
+    })
   ] ++ overlays;
 
   hardware.keyboard.qmk.enable = true;

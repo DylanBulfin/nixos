@@ -51,6 +51,18 @@ in {
       telescope-fzf-native-nvim
       telescope-ui-select-nvim
       telescope-lsp-handlers-nvim
+      sqlite-lua
+      {
+        # Only available on master now, hence the hideous overlay
+        plugin = pkgs.extra_unstable.vimPlugins.smart-open-nvim;
+        type = "lua";
+        config = configNoCode ''
+          vim.g.sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'
+          vim.keymap.set("n", "<leader>ss", function()
+            require("telescope").extensions.smart_open.smart_open()
+          end, { noremap = true, silent = true })
+        '';
+      }
       {
         plugin = telescope-nvim;
         type = "lua";
@@ -75,11 +87,11 @@ in {
         config = readNoCode ./config/conform.lua;
       }
 
-      {
-        plugin = copilot-lua;
-        type = "lua";
-        config = readNoCode ./config/copilot.lua;
-      }
+      # {
+      #   plugin = copilot-lua;
+      #   type = "lua";
+      #   config = readNoCode ./config/copilot.lua;
+      # }
 
       {
         plugin = auto-save-nvim;
@@ -145,13 +157,6 @@ in {
         type = "lua";
         config = readNoCode ./config/neo-tree.lua;
       }
-
-      # {
-      #   plugin = pkgs.vimPlugins.sqlite-lua;
-      #   type = "lua";
-      #   config =
-      #     "vim.g.sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'";
-      # }
 
       FixCursorHold-nvim
       nvim-nio

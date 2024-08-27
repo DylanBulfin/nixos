@@ -13,6 +13,7 @@ require("lualine").setup({
 		theme = "catppuccin",
 	},
 	sections = {
-		lualine_x = { copilot_status, "encoding", "fileformat", "filetype" },
+		-- lualine_x = { copilot_status, "encoding", "fileformat", "filetype" },
+		lualine_x = { "encoding", "fileformat", "filetype" },
 	},
 })
