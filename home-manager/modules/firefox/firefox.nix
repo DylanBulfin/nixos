@@ -4,7 +4,6 @@
   programs.firefox.enable = true;
 
   programs.firefox.profiles.dylan = {
-
     userChrome = ''
       #TabsToolbar {
           display: none !important;

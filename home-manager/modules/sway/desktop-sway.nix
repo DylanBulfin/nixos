@@ -39,27 +39,27 @@
     output = {
       DP-1 = {
         mode = "2560x1440";
-        position = "2560,0";
+        position = "5120,0";
       };
       DP-2 = {
         mode = "2560x1440";
-        position = "5120,0";
+        position = "0,0";
       };
       DP-3 = {
         mode = "2560x1440";
-        position = "0,0";
+        position = "2560,0";
       };
     };
     workspaceOutputAssign = [
-      { output = "DP-1"; workspace = "2"; }
-      { output = "DP-1"; workspace = "5"; }
-      { output = "DP-1"; workspace = "8"; }
-      { output = "DP-2"; workspace = "3"; }
-      { output = "DP-2"; workspace = "6"; }
-      { output = "DP-2"; workspace = "9"; }
-      { output = "DP-3"; workspace = "1"; }
-      { output = "DP-3"; workspace = "4"; }
-      { output = "DP-3"; workspace = "7"; }
+      { output = "DP-3"; workspace = "2"; }
+      { output = "DP-3"; workspace = "5"; }
+      { output = "DP-3"; workspace = "8"; }
+      { output = "DP-1"; workspace = "3"; }
+      { output = "DP-1"; workspace = "6"; }
+      { output = "DP-1"; workspace = "9"; }
+      { output = "DP-2"; workspace = "1"; }
+      { output = "DP-2"; workspace = "4"; }
+      { output = "DP-2"; workspace = "7"; }
     ];
   };
 }
