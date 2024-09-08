@@ -37,6 +37,8 @@
         nixfmt-classic
 
         # Python
+        pyright
+        poetry
         (python3.withPackages (python-pkgs: with python-pkgs;[
           requests
           pygments
@@ -82,6 +84,10 @@
             tamasfe.even-better-toml
           ];
         })
+
+        android-studio
+        fzy
+        typescript
       ]
     )
     ++

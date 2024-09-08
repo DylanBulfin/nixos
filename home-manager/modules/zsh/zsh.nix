@@ -128,12 +128,12 @@
     man = "batman";
     rg = "batgrep";
 
-    code = "codefunc";
+    # code = "codefunc";
     c = "codefunc";
     "c." = "codefunc .";
     cn = "codefunc /etc/nixos";
 
-    nvim = "nvimfunc";
+    # nvim = "nvimfunc";
     n = "nvimfunc";
     "n." = "nvimfunc";
     nn = "nvimfunc /etc/nixos";
@@ -206,7 +206,6 @@
         enable_autols=false
         local prev_dir=$PWD
         cd /etc/nixos
-        sudo -v 
         nix flake update
         sudo nixos-rebuild switch
         cd $prev_dir

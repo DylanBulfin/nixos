@@ -48,21 +48,18 @@ in {
 
       plenary-nvim
       nvim-web-devicons
-      telescope-fzf-native-nvim
+      telescope-fzy-native-nvim
       telescope-ui-select-nvim
       telescope-lsp-handlers-nvim
-      sqlite-lua
-      {
-        # Only available on master now, hence the hideous overlay
-        plugin = pkgs.extra_unstable.vimPlugins.smart-open-nvim;
-        type = "lua";
-        config = configNoCode ''
-          vim.g.sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'
-          vim.keymap.set("n", "<leader>ss", function()
-            require("telescope").extensions.smart_open.smart_open()
-          end, { noremap = true, silent = true })
-        '';
-      }
+      # sqlite-lua
+      # {
+      #   # Only available on master now, hence the hideous overlay
+      #   plugin = smart-open-nvim;
+      #   type = "lua";
+      #   config = configNoCode ''
+      #     vim.g.sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'
+      #   '';
+      # }
       {
         plugin = telescope-nvim;
         type = "lua";
