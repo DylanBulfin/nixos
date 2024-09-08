@@ -2,7 +2,6 @@
   description = "A NixOS flake I stole";
 
   inputs.nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
-  inputs.nixpkgs-extra_unstable.url = "github:NixOS/nixpkgs/master";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
   inputs.kmonad.url =
@@ -12,7 +11,7 @@
   inputs.home-manager.url = "github:nix-community/home-manager/master";
   inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-  outputs = inputs@{ nixpkgs, nixpkgs-stable, nixpkgs-extra_unstable, kmonad, home-manager, ... }:
+  outputs = inputs@{ nixpkgs, nixpkgs-stable, kmonad, home-manager, ... }:
     let
       mkDeviceConfig = dev:
         let
@@ -20,7 +19,7 @@
           overlays = [ ];
         in nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit device nixpkgs-stable nixpkgs-extra_unstable inputs overlays; };
+          specialArgs = { inherit device nixpkgs-stable inputs overlays; };
           modules = [
             ./nixos/configuration.nix
 

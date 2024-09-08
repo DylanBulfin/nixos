@@ -41,6 +41,8 @@ lspconfig.nixd.setup({ capabilities = capabilities })
 --
 lspconfig.pyright.setup({ capabilities = capabilities })
 
+lspconfig.gopls.setup({ capabilities = capabilities })
+
 vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, { desc = "Float diagnostics" })
 vim.keymap.set("n", "<leader>xN", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
 vim.keymap.set("n", "<leader>xn", vim.diagnostic.goto_next, { desc = "Next diagnostic" })

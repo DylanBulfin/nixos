@@ -7,5 +7,6 @@ require("conform").setup({
 		lua = { "stylua" },
 		rust = { "rustfmt", lsp_format = "fallback" },
 		nix = { "nixfmt" },
+    go = {"gofmt"}
 	},
 })

@@ -53,7 +53,6 @@ in {
       telescope-lsp-handlers-nvim
       # sqlite-lua
       # {
-      #   # Only available on master now, hence the hideous overlay
       #   plugin = smart-open-nvim;
       #   type = "lua";
       #   config = configNoCode ''

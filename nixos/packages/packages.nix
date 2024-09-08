@@ -1,95 +1,90 @@
 { pkgs, device, ... }:
 
 {
-  environment.systemPackages =
-    (
-      with pkgs;
-      [
-        nixpkgs-fmt
-        vim
-        wl-clipboard
-        git
-        xfce.thunar
-        pavucontrol
-        discord
-        htop
-        fd
-        feh
-        vlc
-        sqlite
-        
-        # node
-        nodejs
+  environment.systemPackages = (with pkgs; [
+    nixpkgs-fmt
+    vim
+    wl-clipboard
+    git
+    xfce.thunar
+    pavucontrol
+    discord
+    htop
+    fd
+    feh
+    vlc
+    sqlite
 
-        # rust
-        rustc
-        cargo
-        rust-analyzer
-        rustfmt
-        clippy
+    # node
+    nodejs
 
-        # C(++)
-        gcc
+    # rust
+    rustc
+    cargo
+    rust-analyzer
+    rustfmt
+    clippy
 
-        # nix
-        nil
-        nixd
-        nixfmt-classic
+    # C(++)
+    gcc
 
-        # Python
-        pyright
-        poetry
-        (python3.withPackages (python-pkgs: with python-pkgs;[
-          requests
-          pygments
-        ]))
+    # Go
+    go
+    gopls
 
-        # Haskell
-        (haskellPackages.ghcWithPackages
-          (pkgs: with pkgs; [ cabal-install ]))
+    # nix
+    nil
+    nixd
+    nixfmt-classic
 
-        # Lua
-        lua-language-server
-        stylua
+    # Python
+    pyright
+    poetry
+    (python3.withPackages
+      (python-pkgs: with python-pkgs; [ requests pygments ]))
 
-        # For sway
-        mako
-        sway-contrib.grimshot
-        wofi
-        antidote
-        swaybg
+    # Haskell
+    (haskellPackages.ghcWithPackages (pkgs: with pkgs; [ cabal-install ]))
 
-        ripgrep
-        bat-extras.batman
-        bat-extras.batgrep
+    # Lua
+    lua-language-server
+    stylua
 
-        obsidian
+    # For sway
+    mako
+    sway-contrib.grimshot
+    wofi
+    antidote
+    swaybg
 
-        (vscode-with-extensions.override {
-          vscodeExtensions = with vscode-extensions; [
-            asvetliakov.vscode-neovim
-            github.copilot
-            github.copilot-chat
-            # bbenoist.nix
-            jnoortheen.nix-ide
-            sumneko.lua
-            rust-lang.rust-analyzer
-            vadimcn.vscode-lldb
-            mechatroner.rainbow-csv
-            haskell.haskell
-            justusadam.language-haskell
-            ms-python.python
-            ms-python.vscode-pylance
-            ms-python.debugpy
-            tamasfe.even-better-toml
-          ];
-        })
+    ripgrep
+    bat-extras.batman
+    bat-extras.batgrep
 
-        android-studio
-        fzy
-        typescript
-      ]
-    )
-    ++
-    import ./packages-${device}.nix { inherit pkgs; };
+    obsidian
+
+    (vscode-with-extensions.override {
+      vscodeExtensions = with vscode-extensions; [
+        asvetliakov.vscode-neovim
+        github.copilot
+        github.copilot-chat
+        # bbenoist.nix
+        jnoortheen.nix-ide
+        sumneko.lua
+        rust-lang.rust-analyzer
+        vadimcn.vscode-lldb
+        mechatroner.rainbow-csv
+        haskell.haskell
+        justusadam.language-haskell
+        ms-python.python
+        ms-python.vscode-pylance
+        ms-python.debugpy
+        tamasfe.even-better-toml
+      ];
+    })
+
+    android-studio
+    fzy
+    typescript
+  ]) ++ import ./packages-${device}.nix { inherit pkgs; };
 }
