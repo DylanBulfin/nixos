@@ -27,6 +27,7 @@
 
     # C(++)
     gcc
+    gnumake
 
     # Go
     go
@@ -76,9 +77,9 @@
         mechatroner.rainbow-csv
         haskell.haskell
         justusadam.language-haskell
-        ms-python.python
-        ms-python.vscode-pylance
-        ms-python.debugpy
+        # ms-python.python
+        # ms-python.vscode-pylance
+        # ms-python.debugpy
         tamasfe.even-better-toml
       ];
     })
@@ -86,5 +87,9 @@
     android-studio
     fzy
     typescript
+
+# Games
+    clonehero
+    # lutris
   ]) ++ import ./packages-${device}.nix { inherit pkgs; };
 }

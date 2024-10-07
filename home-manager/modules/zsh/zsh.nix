@@ -203,6 +203,7 @@
       }
 
       fullupdate () {
+        sudo -v || exit
         enable_autols=false
         local prev_dir=$PWD
         cd /etc/nixos

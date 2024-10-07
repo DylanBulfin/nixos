@@ -37,7 +37,7 @@
       }
     ];
     input = {
-      "*" = {
+      "1267:12811:ELAN0688:00_04F3:320B_Touchpad" = {
         tap = "enabled";
         drag = "enabled";
         natural_scroll = "enabled";
