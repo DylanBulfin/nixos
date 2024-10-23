@@ -23,7 +23,7 @@
           modules = [
             ./nixos/configuration.nix
 
-            kmonad.nixosModules.default
+            # kmonad.nixosModules.default
 
             home-manager.nixosModules.home-manager
             {

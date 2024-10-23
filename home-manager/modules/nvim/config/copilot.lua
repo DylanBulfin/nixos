@@ -2,30 +2,32 @@ vim.api.nvim_create_augroup("Copilot", { clear = true })
 vim.api.nvim_create_autocmd("InsertEnter", {
 	group = "Copilot",
 	callback = function()
-		require("copilot").setup({
-			panel = {
-				enabled = false,
-			},
-			suggestion = {
-				auto_trigger = true,
-				debouce = 100,
-				keymap = {
-					accept = "<C-f>",
-					-- accept_word = "<C-w>",
-					next = "<C-n>",
-					prev = "<C-p>",
-				},
-			},
-			server_opts_override = {
-				settings = {
-					advanced = {
-						inlineSuggestCount = 3,
-					},
-				},
-			},
-		})
-		vim.g.copilot_init = true
-		vim.cmd.Copilot("disable")
+    if not vim.g.copilot_init then
+      require("copilot").setup({
+        panel = {
+          enabled = false,
+        },
+        suggestion = {
+          auto_trigger = true,
+          debouce = 100,
+          keymap = {
+            accept = "<C-f>",
+            -- accept_word = "<C-w>",
+            next = "<C-n>",
+            prev = "<C-p>",
+          },
+        },
+        server_opts_override = {
+          settings = {
+            advanced = {
+              inlineSuggestCount = 3,
+            },
+          },
+        },
+      })
+      vim.g.copilot_init = true
+      vim.cmd.Copilot("disable")
+    end
 	end,
 })
 

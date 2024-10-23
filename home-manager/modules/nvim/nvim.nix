@@ -83,11 +83,11 @@ in {
         config = readNoCode ./config/conform.lua;
       }
 
-      # {
-      #   plugin = copilot-lua;
-      #   type = "lua";
-      #   config = readNoCode ./config/copilot.lua;
-      # }
+      {
+        plugin = copilot-lua;
+        type = "lua";
+        config = readNoCode ./config/copilot.lua;
+      }
 
       {
         plugin = auto-save-nvim;
@@ -156,16 +156,16 @@ in {
 
       FixCursorHold-nvim
       nvim-nio
-      # {
-      #   plugin = rustaceanvim;
-      #   type = "lua";
-      #   config = readNoCode ./config/rust.lua;
-      # }
-      # {
-      #   plugin = neotest;
-      #   type = "lua";
-      #   config = readNoCode ./config/neotest.lua;
-      # }
+      {
+        plugin = rustaceanvim;
+        type = "lua";
+        config = readNoCode ./config/rust.lua;
+      }
+      {
+        plugin = neotest;
+        type = "lua";
+        config = readNoCode ./config/neotest.lua;
+      }
     ];
   };
 }

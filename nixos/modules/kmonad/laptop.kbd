@@ -17,8 +17,8 @@
   pw C-left
   clalt (layer-toggle altlayer)
   es (tap-next esc lctl)
-  tm (tap-hold-next-release 150 tab lmet)
-  spc (tap-hold-next-release 150 spc @clalt)
+  tm (tap-hold-next-release 250 tab lmet)
+  spc (tap-hold-next-release 250 spc @clalt)
   qw (layer-switch qwerty)
   cmk (layer-switch colemak)
 )

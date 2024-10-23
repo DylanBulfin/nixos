@@ -50,6 +50,8 @@
   hardware.keyboard.qmk.enable = true;
   hardware.pulseaudio.enable = false;
   hardware.graphics.enable = true;
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
 
   security.rtkit.enable = true;
   security.polkit.enable = true;
@@ -104,7 +106,7 @@
 
   fonts.packages = with pkgs; [
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-emoji
     meslo-lgs-nf
 
