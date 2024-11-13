@@ -59,12 +59,14 @@ if not vim.g.vscode then
 	vim.o.ignorecase = true
 	vim.o.smartindent = true
 	vim.o.wrap = true
+  vim.o.textwidth = 90 -- Width works better for my terminal
 	vim.o.signcolumn = "no"
 	vim.o.showmode = false
 	vim.o.background = "dark"
 	vim.o.listchars = "space:⋅,tab:▎_,trail:•,extends:❯,precedes:❮,nbsp:"
+	vim.o.colorcolumn = "90"
 
-	-- Neovim-specific bindings
+	-- Neovim-specific binding
 	vim.keymap.set("n", "<leader>qq", "<Cmd>qa<CR>", { desc = "Exit Neovim" })
 	vim.keymap.set("n", "<leader>qQ", "<Cmd>qa!<CR>", { desc = "Exit Neovim with a bang" })
 
@@ -81,9 +83,9 @@ if not vim.g.vscode then
 	vim.keymap.set("n", "<C-w>e", "<C-w>k", { desc = "Move to upper window" })
 
 	vim.keymap.set("n", "<leader>w", "<C-w>", { remap = true })
-	vim.keymap.set("n", "<leader>p", '"+p', { remap = true })
-	vim.keymap.set("n", "<leader>P", '"+P', { remap = true })
-	vim.keymap.set("n", "<leader>y", '"+y', { remap = true })
+	vim.keymap.set({ "n", "v" }, "<leader>p", '"+p')
+	vim.keymap.set({ "n", "v" }, "<leader>P", '"+P')
+	vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
 
 	vim.keymap.set("n", "<leader>a", "gg^vG$", { desc = "Select entire buffer" })
 
@@ -99,6 +101,16 @@ if not vim.g.vscode then
 		callback = function()
 			vim.cmd.wincmd("L")
 		end,
+	})
+
+	function Sesh()
+		vim.cmd.mksession(".session")
+	end
+
+	vim.api.nvim_create_user_command("Sesh", function()
+		Sesh()
+	end, {
+		desc = "Create session",
 	})
 end
 

@@ -166,6 +166,12 @@ in {
         type = "lua";
         config = readNoCode ./config/neotest.lua;
       }
+
+      {
+        plugin = trouble;
+        type = "lua";
+        config = readNoCode ./config/trouble.lua;
+      }
     ];
   };
 }

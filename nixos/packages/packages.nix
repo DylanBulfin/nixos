@@ -8,7 +8,7 @@
     git
     xfce.thunar
     pavucontrol
-    # discord
+    discord
     htop
     fd
     feh
@@ -64,27 +64,27 @@
 
     obsidian
 
-    # (vscode-with-extensions.override {
-    #   vscodeExtensions = with vscode-extensions; [
-    #     asvetliakov.vscode-neovim
-    #     github.copilot
-    #     github.copilot-chat
-    #     # bbenoist.nix
-    #     jnoortheen.nix-ide
-    #     sumneko.lua
-    #     rust-lang.rust-analyzer
-    #     vadimcn.vscode-lldb
-    #     mechatroner.rainbow-csv
-    #     haskell.haskell
-    #     justusadam.language-haskell
-    #     # ms-python.python
-    #     # ms-python.vscode-pylance
-    #     # ms-python.debugpy
-    #     tamasfe.even-better-toml
-    #   ];
-    # })
+    (vscode-with-extensions.override {
+      vscodeExtensions = with vscode-extensions; [
+        asvetliakov.vscode-neovim
+        github.copilot
+        github.copilot-chat
+        # bbenoist.nix
+        jnoortheen.nix-ide
+        sumneko.lua
+        rust-lang.rust-analyzer
+        vadimcn.vscode-lldb
+        mechatroner.rainbow-csv
+        haskell.haskell
+        justusadam.language-haskell
+        # ms-python.python
+        # ms-python.vscode-pylance
+        # ms-python.debugpy
+        tamasfe.even-better-toml
+      ];
+    })
 
-    android-studio
+    # android-studio
     fzy
     typescript
 
