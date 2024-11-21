@@ -28,17 +28,17 @@ lspconfig.lua_ls.setup({
 lspconfig.nixd.setup({ capabilities = capabilities })
 
 -- Rust
--- lspconfig.rust_analyzer.setup({
--- 	-- Setup for clippy development, leaving it in case
--- 	init_options = {
--- 		["rust-analyzer.rustc.source"] = "discover",
--- 	},
--- 	settings = {
--- 		["rust-analyer"] = {},
--- 	},
--- 	capabilities = capabilities,
--- })
---
+lspconfig.rust_analyzer.setup({
+	-- Setup for clippy development, leaving it in case
+	init_options = {
+		["rust-analyzer.rustc.source"] = "discover",
+	},
+	settings = {
+		["rust-analyer"] = {},
+	},
+	capabilities = capabilities,
+})
+
 lspconfig.pyright.setup({ capabilities = capabilities })
 
 lspconfig.gopls.setup({ capabilities = capabilities })

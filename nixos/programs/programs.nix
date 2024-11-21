@@ -24,7 +24,7 @@
 
   programs.less = {
     enable = true;
-    # clearDefaultCommands = true;
+    clearDefaultCommands = true;
     commands = {
       n = "forw-line";
       e = "back-line";

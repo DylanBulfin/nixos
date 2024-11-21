@@ -45,15 +45,18 @@ if not vim.g.vscode then
 		directory = "",
 		file = ".session",
 		autoread = true,
-    autowrite = true,
-		-- hooks = {
-		-- 	pre = {
-		-- 		write = function()
-		-- 			vim.cmd("<Cmd>Neotree close<CR>")
-		--         -- vim.cmd("<Cmd>mksession .session<CR>")
-		-- 		end,
-		-- 	},
-		-- },
+		autowrite = true,
+		hooks = {
+			pre = {
+				write = function()
+					-- vim.cmd("<Cmd>Neotree close<CR>")
+					if require("trouble").is_open("diagnostics") then
+						vim.cmd("<Cmd>Trouble diagnostics close<CR>")
+					end
+					-- vim.cmd("<Cmd>mksession .session<CR>")
+				end,
+			},
+		},
 	})
 
 	require("mini.notify").setup()

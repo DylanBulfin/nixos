@@ -19,11 +19,11 @@
     nodejs
 
     # rust
-    rustc
-    cargo
-    rust-analyzer
-    rustfmt
-    clippy
+    stable.rustc
+    stable.cargo
+    stable.rust-analyzer
+    stable.rustfmt
+    stable.clippy
 
     # C(++)
     gcc
@@ -39,10 +39,10 @@
     nixfmt-classic
 
     # Python
-    pyright
-    poetry
-    (python3.withPackages
-      (python-pkgs: with python-pkgs; [ requests pygments ]))
+    # pyright
+    # poetry
+    # (python3.withPackages
+    #   (python-pkgs: with python-pkgs; [ requests pygments ]))
 
     # Haskell
     (haskellPackages.ghcWithPackages (pkgs: with pkgs; [ cabal-install ]))
@@ -52,7 +52,6 @@
     stylua
 
     # For sway
-    mako
     sway-contrib.grimshot
     wofi
     antidote
@@ -86,10 +85,16 @@
 
     # android-studio
     fzy
-    typescript
+    # typescript
+
+    # Trash management
+    trashy
+
+    # Postman replacement
+    hoppscotch
 
 # Games
-    clonehero
+    # clonehero
     # lutris
   ]) ++ import ./packages-${device}.nix { inherit pkgs; };
 }

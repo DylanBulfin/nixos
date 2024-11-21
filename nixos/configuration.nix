@@ -2,19 +2,18 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, device, inputs, overlays, nixpkgs-stable, nixpkgs-extra_unstable, ... }:
+{ pkgs, device, inputs, overlays, nixpkgs-stable, ... }:
 
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware/${device}-hardware.nix
-      ./packages/packages.nix
-      ./modules/kmonad/kmonad.nix
-      ./modules/firefox/firefox.nix
-      ./programs/programs.nix
-      ./services/services.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware/${device}-hardware.nix
+    ./packages/packages.nix
+    ./modules/kmonad/kmonad.nix
+    ./modules/firefox/firefox.nix
+    ./programs/programs.nix
+    ./services/services.nix
+  ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -24,7 +23,6 @@
     configurationLimit = 5;
   };
   boot.loader.efi.canTouchEfiVariables = true;
-
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Added as part of nixd install instructions
@@ -38,20 +36,14 @@
         config.allowUnfree = true;
       };
     })
-
-    (final: prev: {
-      extra_unstable = import nixpkgs-extra_unstable {
-        system = prev.system;
-        config.allowUnfree = true;
-      };
-    })
   ] ++ overlays;
 
   hardware.keyboard.qmk.enable = true;
   hardware.pulseaudio.enable = false;
   hardware.graphics.enable = true;
   hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  hardware.bluetooth.powerOnBoot =
+    true; # powers up the default Bluetooth controller on boot
 
   security.rtkit.enable = true;
   security.polkit.enable = true;
@@ -87,7 +79,9 @@
     # What interrupts ctrl+backspace in zsh
     WORDCHARS = "*?_-.[]~=&;!#$%^(){}<>";
     # What characters are removed after tab-completion in zsh
-    ZLE_REMOVE_SUFFIX_CHARS = ";\n\C-M\t";
+    ZLE_REMOVE_SUFFIX_CHARS = ''
+      ;
+      C-M	'';
 
     PAGER = "bat";
   };

@@ -137,6 +137,8 @@
     n = "nvimfunc";
     "n." = "nvimfunc";
     nn = "nvimfunc /etc/nixos";
+
+    trm = "trash put";
   };
 
   programs.zoxide.enable = true;

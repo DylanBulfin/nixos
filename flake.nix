@@ -11,7 +11,7 @@
   inputs.home-manager.url = "github:nix-community/home-manager/master";
   inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-  outputs = inputs@{ nixpkgs, nixpkgs-stable, kmonad, home-manager, ... }:
+  outputs = inputs@{ nixpkgs, nixpkgs-stable, home-manager, ... }:
     let
       mkDeviceConfig = dev:
         let

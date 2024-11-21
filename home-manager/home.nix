@@ -31,6 +31,12 @@
   services.wlsunset.sunset = "19:00";
   services.wlsunset.sunrise = "09:00";
 
+  services.mako = {
+    enable = true;
+    defaultTimeout = 10000;
+    ignoreTimeout = true;
+  };
+
   home.stateVersion = "23.11";
 
   programs.home-manager.enable = true;

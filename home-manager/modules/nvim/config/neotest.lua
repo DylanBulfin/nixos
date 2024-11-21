@@ -1,6 +1,6 @@
 require("neotest").setup({
 	adapters = {
-		require("rustaceanvim.neotest"),
+		-- require("rustaceanvim.neotest"),
 	},
 })
 
