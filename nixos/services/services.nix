@@ -17,6 +17,8 @@
     xkb.layout = "us";
   };
 
+  services.mullvad-vpn.enable = true;
+
   services.xserver = {
     enable = true;
 

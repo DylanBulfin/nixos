@@ -137,6 +137,7 @@
     n = "nvimfunc";
     "n." = "nvimfunc";
     nn = "nvimfunc /etc/nixos";
+    ns = "nvim -c \":Sesh\" && nvimfunc";
 
     trm = "trash put";
   };

@@ -91,7 +91,13 @@
     trashy
 
     # Postman replacement
-    hoppscotch
+    # hoppscotch
+
+    qbittorrent
+    mullvad-vpn
+
+    # Static site generation
+    zola
 
 # Games
     # clonehero
