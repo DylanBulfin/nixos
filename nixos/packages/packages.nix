@@ -19,11 +19,11 @@
     nodejs
 
     # rust
-    stable.rustc
-    stable.cargo
-    stable.rust-analyzer
-    stable.rustfmt
-    stable.clippy
+    rustc
+    cargo
+    rust-analyzer
+    rustfmt
+    clippy
 
     # C(++)
     gcc
