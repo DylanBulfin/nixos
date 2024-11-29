@@ -11,5 +11,5 @@ cd /home/dylan/Downloads
 
 nix shell --extra-experimental-features nix-command --extra-experimental-features flakes nixpkgs#unzip --command sh -c "unzip nixos.zip"
 
-chmod +x /home/dylan/Dowloads/nixos-main/utils/gitsteps.sh
-nix shell --extra-experimental-features nix-command --extra-experimental-features flakes nixpkgs#git --command /home/dylan/Dowloads/nixos-main/utils/gitsteps.sh ArgTest
+chmod +x /home/dylan/Downloads/nixos-main/utils/gitsteps.sh
+nix shell --extra-experimental-features nix-command --extra-experimental-features flakes nixpkgs#git --command /home/dylan/Downloads/nixos-main/utils/gitsteps.sh ArgTest
