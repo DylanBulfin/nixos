@@ -2,5 +2,5 @@
 
 with pkgs;
 [
-  neofetch
+
 ]
