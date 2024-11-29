@@ -10,5 +10,6 @@ nixosdir="/etc/nixos"
 #
 # git clone https://github.com/DylanBulfin/nixos .
 
-echo #@
-
+echo $@
+echo testing
+echo $#
