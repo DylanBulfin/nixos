@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, device, inputs, overlays, nixpkgs-stable, ... }:
+{ pkgs, device, inputs, overlays, nixpkgs-stable, fenix, ... }:
 
 {
   imports = [
@@ -75,6 +75,8 @@
     EDITOR = "nvim";
     VISUAL = "nvim";
     BROWSER = "firefox";
+
+    CARGO_HOME = "/home/dylan/.cargo";
 
     # What interrupts ctrl+backspace in zsh
     WORDCHARS = "*?_-.[]~=&;!#$%^(){}<>";

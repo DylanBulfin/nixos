@@ -18,12 +18,7 @@
     # node
     nodejs
 
-    # rust
-    rustc
-    cargo
-    rust-analyzer
-    rustfmt
-    clippy
+    # rust nightly
 
     # C(++)
     gcc
@@ -39,10 +34,10 @@
     nixfmt-classic
 
     # Python
-    # pyright
-    # poetry
-    # (python3.withPackages
-    #   (python-pkgs: with python-pkgs; [ requests pygments ]))
+    pyright
+    poetry
+    (python3.withPackages
+      (python-pkgs: with python-pkgs; [ requests pygments ]))
 
     # Haskell
     (haskellPackages.ghcWithPackages (pkgs: with pkgs; [ cabal-install ]))
@@ -99,7 +94,7 @@
     # Static site generation
     zola
 
-# Games
+    # Games
     # clonehero
     # lutris
   ]) ++ import ./packages-${device}.nix { inherit pkgs; };

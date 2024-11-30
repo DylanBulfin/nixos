@@ -1,5 +1,17 @@
 local group = vim.api.nvim_create_augroup("RustAutocmd", {})
 
+vim.g.rustaceanvim = {
+	server = {
+		default_settings = {
+			["rust-analyzer"] = {
+				rustc = {
+					source = "/home/dylan/repos/rust/rust",
+				},
+			},
+		},
+	},
+}
+
 vim.api.nvim_create_autocmd("FileType", {
 	group = group,
 	pattern = "rust",

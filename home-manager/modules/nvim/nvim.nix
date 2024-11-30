@@ -156,11 +156,11 @@ in {
 
       FixCursorHold-nvim
       nvim-nio
-      {
-        plugin = rustaceanvim;
-        type = "lua";
-        config = readNoCode ./config/rust.lua;
-      }
+      # {
+      #   plugin = rustaceanvim;
+      #   type = "lua";
+      #   config = readNoCode ./config/rust.lua;
+      # }
       {
         plugin = neotest;
         type = "lua";

@@ -11,15 +11,20 @@
   inputs.home-manager.url = "github:nix-community/home-manager/master";
   inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-  outputs = inputs@{ nixpkgs, nixpkgs-stable, home-manager, ... }:
+  inputs.fenix.url = "github:nix-community/fenix";
+  inputs.fenix.inputs.nixpkgs.follows = "nixpkgs";
+
+  outputs = inputs@{ nixpkgs, nixpkgs-stable, home-manager, fenix, ... }:
     let
       mkDeviceConfig = dev:
         let
           device = "${dev}";
-          overlays = [ ];
+          overlays = [ fenix.overlays.default ];
         in nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit device nixpkgs-stable inputs overlays; };
+          specialArgs = {
+            inherit device nixpkgs-stable inputs overlays fenix;
+          };
           modules = [
             ./nixos/configuration.nix
 
