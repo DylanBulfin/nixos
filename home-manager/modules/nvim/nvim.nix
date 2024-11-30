@@ -172,6 +172,12 @@ in {
         type = "lua";
         config = readNoCode ./config/trouble.lua;
       }
+
+      {
+        plugin = indent-blankline-nvim;
+        type = "lua";
+        config = readNoCode ./config/indent.lua;
+      }
     ];
   };
 }

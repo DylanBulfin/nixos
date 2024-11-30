@@ -38,7 +38,7 @@
     })
   ] ++ overlays;
 
-  hardware.keyboard.qmk.enable = true;
+  # hardware.keyboard.qmk.enable = true;
   hardware.pulseaudio.enable = false;
   hardware.graphics.enable = true;
   hardware.bluetooth.enable = true; # enables support for Bluetooth
