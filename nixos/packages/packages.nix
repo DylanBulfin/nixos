@@ -19,6 +19,14 @@
     nodejs
 
     # rust nightly
+    (fenix.complete.withComponents [
+      "cargo"
+      "clippy"
+      "rust-src"
+      "rustc"
+      "rustfmt"
+    ])
+    rust-analyzer-nightly
 
     # C(++)
     gcc
@@ -59,23 +67,32 @@
     obsidian
 
     (vscode-with-extensions.override {
-      vscodeExtensions = with vscode-extensions; [
-        asvetliakov.vscode-neovim
-        github.copilot
-        github.copilot-chat
-        # bbenoist.nix
-        jnoortheen.nix-ide
-        sumneko.lua
-        rust-lang.rust-analyzer
-        vadimcn.vscode-lldb
-        mechatroner.rainbow-csv
-        haskell.haskell
-        justusadam.language-haskell
-        # ms-python.python
-        # ms-python.vscode-pylance
-        # ms-python.debugpy
-        tamasfe.even-better-toml
-      ];
+      vscodeExtensions = with vscode-extensions;
+        [
+          asvetliakov.vscode-neovim
+          github.copilot
+          github.copilot-chat
+          # bbenoist.nix
+          jnoortheen.nix-ide
+          sumneko.lua
+          # rust-lang.rust-analyzer
+          vadimcn.vscode-lldb
+          mechatroner.rainbow-csv
+          haskell.haskell
+          justusadam.language-haskell
+          # ms-python.python
+          # ms-python.vscode-pylance
+          # ms-python.debugpy
+          tamasfe.even-better-toml
+
+        ] ++
+        # rust-analyzer nightly
+        (vscode-utils.extensionsFromVscodeMarketplace [{
+          name = "rust-analyzer";
+          publisher = "rust-lang";
+          version = "0.4.2202";
+          sha256 = "sha256-mS6NDP5wl8PNQS0ql9P63YDr6SOO//YxBhLgzqrdCjc=";
+        }]);
     })
 
     # android-studio
@@ -93,6 +110,10 @@
 
     # Static site generation
     zola
+
+    # QEMU
+    qemu
+    quickemu
 
     # Games
     # clonehero

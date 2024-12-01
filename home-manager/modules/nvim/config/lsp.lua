@@ -31,12 +31,9 @@ lspconfig.nixd.setup({ capabilities = capabilities })
 
 lspconfig.rust_analyzer.setup({
 	-- Setup for clippy development, leaving it in case
-	init_options = {
-		["rust-analyzer.rustc.source"] = "/home/dylan/repos/rust/rust/Cargo.toml",
-	},
 	settings = {
-		["rust-analyer"] = {
-			rustc = { source = "/home/dylan/repos/rust/rust/Cargo.toml" },
+		["rust-analyzer"] = {
+			rustc = { source = "discover" },
 		},
 	},
 	capabilities = capabilities,
